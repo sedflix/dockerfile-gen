@@ -11,7 +11,7 @@ Dependencies:
 - jupyter
 - docker/nvidia-docker(optional)
 
-You are requied to clone the the directory and build a docker image. The current dockerfile is unoptimised.
+You are requied to clone this repo and download data(if you want to train) or weights(if you just want to checkout).
 ```
 git clone https://github.com/sedflix/dockerfile-gen.git
 cd dockerfile-gen
