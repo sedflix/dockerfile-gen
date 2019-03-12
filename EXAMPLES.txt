@@ -1,27 +1,1408 @@
-->0<-
+FROM ubuntu  
+# INSTALL DOCKER  
+# Configure postgres  
+ENV DOCKER_GITLOC_PORT 3280  
+ARG PORT 2000  
+# Install supervisor  
+RUN apt-get update && apt-get -qqy install python-setuptools \  
+&& apt-get clean \  
+&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*  
 
-FROM maven:3.5-jdk-8  
-RUN apt-get update -y && \  
-apt-get -y install python-pip python-dev libfreetype6-dev libfreetype6-dev
-libjpeg62-turbo-dev libpng12-dev libpng12-dev libpng-dev  
+FROM debian:stable  
   
-# Install Python 2 packages  
-# RUN curl -L
-https://github.com/docker-
-client/binaries/archive/${VERSION}.tar.gz | tar xz --strip-components=1 -C
-${PROJECT_DIR}/  
-RUN ln -s ${BASE_DIR} /usr/local/src/main  
+ENV PID_CONFIGURE_POST_VERSION=1.2.4  
   
-# Create the single translation  
-COPY src/* /usr/src/app  
-RUN npm install -g production && \  
-npm cache clean  
+RUN apk --no-cache --no-cache add bash ca-certificates  
+  
+# Install pip  
+RUN mkdir /etc/network  
+COPY service /etc/my_init.d  
+RUN chmod +x config/start.sh  
+ENTRYPOINT ["/usr/local/bin/container", "-s"]  
+CMD ["/etc/service/postgresql/9.4/main"]  
 
-FROM php:5-apache  
+FROM ubuntu  
   
-COPY ./docker/supervisord.conf /etc/supervisor.conf  
+MAINTAINER Adan Softwere  
+  
+#Enable application.  
+ENV PHP_VERSION=1.0 \  
+PHP_MAJOR  
+  
+RUN apk update && apk upgrade && \  
+apk add --update \  
+git \  
+ca-certificates  
+RUN curl -sSL -o /tmp/graylog-linux-amd64.zip
+${GOSU_VERSION}/src/getserver/client/release-${VCS_REF /usr/bin/platform -O /tmp/chromedriver_linux64-30.0.tgz  
+RUN exit 0  
+  
+# Install packages  
+RUN apt-get update && apt-get install -y --no-install-recommends \  
+libc6:i386
+libcrontools-dev \  
+libsqlite3-dev \  
+libpq-dev \  
+libxslt-dev \  
+libpam-dev \  
+libgtk2.0-0 \  
+libxml2-dev \  
+libpng-dev \  
+libpq5 \  
+make \  
+python-setuptools \  
+python-scipy \  
+python-pip \  
+supervisor \  
+libsqlite3-dev \  
+libc6-dev \  
+libxml2-dev \  
+libmcrypt-dev \  
+libsqlite3-dev \  
+libssl-dev \  
+libssl-dev \  
+libpq-dev \  
+python \  
+ca-certificates \  
+curl \  
+&& apk --no-cache add \  
+git \  
+&& mkdir /home/app \  
+&& chmod 755 /usr/local/bin/phpunit \  
+&& rm -f /root/.ssh/id_rsa \  
+&& ln -s ../scripts/start_default /etc/cron.d/default/supervisor  
+  
+RUN echo "root:root" | debconf-set-
+selections  
+RUN add-apt-repository ppa:ansible/public && \  
+add-apt-repository -y ppa:assimire/ruby && \  
+apt-get update && apt-get install -y --no-install-recommends --force-yes --no-install-recommends \  
+curl \  
+git \  
+python-dev \  
+python-pyget-dev \  
+python-software-properties
+\  
+libgcc-musl-dev \  
+libxml2-dev  
+RUN apt
+----------
+FROM ubuntu 16.04  
+RUN echo '# ---------------------------------------------------  
+RUN chown -R application-database /etc/managen /var/log/supervisor/supervisord.d; \  
+rm -f /etc/sudoers  
+  
+ADD . /opt/app/  
+  
+ENTRYPOINT ["/entrypoint.sh"]  
 
-FROM node:0.9.0  
-# Add configs and script to add the default start  
-COPY setup/start.sh /start.sh  
-ENTRYPOINT ["/usr/bin/supervisord"]  
+FROM ubuntu:14.04  
+MAINTAINER Daniel Pontang <mritden@ansible.com>  
+  
+RUN apt-get update && apt-get install -y python-pip \  
+&& curl -fSL "https://github.com/docker/bin/linux/amd64/elasticsearch-$SPARK_VERSION.tar.gz" | tar -xz \  
+&& cd /tmp/gradle-latest.zip  
+  
+RUN apt-get install -qqy \--no-install-recommends \  
+binare \  
+git \  
+curl  
+  
+WORKDIR /opt  
+CMD [ "/opt/steamcmd/spark-command.sh"]  
+  
+# Install packages and set pip install  
+COPY package.json /app/archive/supervisor-config/config.inc.php  
+RUN sudo apt-get install -y python-pip python-software-properties curl libc6-dev libpng12-dev libxml2-dev libxslt1-dev libssl-dev libssl-dev  
+  
+# Add the directory in a data directory  
+RUN mkdir /usr/src/app  
+WORKDIR ${SHALL_CONF_PORT}  
+RUN mkdir /var/log/ssh  
+RUN chmod +x /usr/local/bin/start  
+RUN chmod a+x /tmp/install_stack.txt && \  
+mkdir ${APP_ROOT}/plugin  
+  
+ENTRYPOINT [ "/sbin/tini", "--"]  
+  
+COPY ./deployer /opt/checkstorm-compat/src/github.com/chanter/scollected  
+  
+CMD [ "sh", "/usr/local/bin/run.sh" ]  
+
+FROM debian:jessie-slim  
+  
+RUN apt -y update
+&& apt upgrade -y  
+  
+RUN apt clean  
+  
+RUN cd /tmp && \  
+apt-get install --force-yes python-pip && \  
+apt-get install -y \  
+libssl-dev \  
+libssl-dev \  
+postgresql-client \  
+python-dev \  
+cpp \  
+python-dev \  
+&& python3 -m usermod -g 1000 nginx \  
+&& mkdir -p .bootstrap \  
+&& rm /etc/nginx/modules \  
+&& sed -i "s/^;date.timezone =\/set docker -e "debconf-
+setess
+/usr/sbin/apt-apt-server/remote.py \  
+&& sed -i 's/;cat \/usr\/local/g' /etc/php.sock; \  
+echo "package info store android apt-get --allow-unauthenticated compatible-daemonize.so\n" >>
+/var/log/nginx/access.log \  
+&& echo "php-fpm catalogued-plugin:/static/debconf  
+# install su
+----------
+FROM ubuntu 16.04  
+RUN groupmod -g 1000 www-data && \  
+echo "export PATH=$PATH:/usr/share/provision/php-client_app_server \  
+&& gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/node  
+RUN mkdir -p /usr/src/app  
+  
+ENV APACHE_RUN_USER www-data  
+ENV ANDROID_SDK_HOME /opt/apache  
+ENV JAVA_HOME /usr/bin/java  
+  
+RUN apt-get update -y \  
+&& apt-get install -y chromium-install \  
+&& rm -rf /var/lib/apt/lists/*  
+  
+ADD . /usr/src/app  
+RUN python /usr/local/bin/phpcpp && \  
+sed -i -e "s## export PORT = "" /etc/php7/conf.d/mysql.sql && \  
+sed -i "s/^\\(.*\\.\\.\/permission notebook /etc/postgresql/9.3/set_digrative  
+
+FROM ubuntu:14.04  
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE C.UTF-8  
+WORKDIR /app  
+  
+# Set the default command.  
+ENTRYPOINT ["/usr/local/bin/start.sh"]  
+CMD ["postgres"]  
+
+FROM ubuntu:14.04  
+# Add standard source for php  
+RUN sed -i 's!##\s*required\\).*/\1\\[/usr/allow_security.*/deb-script sockers/g" /etc/ssh/sshd_config  
+RUN apt-get install -y --no-install-recommends \  
+build-essential \  
+libssl-dev \  
+libsqlite3-dev  
+# COPY config/server/server.py /usr/bin/  
+  
+COPY config .  
+  
+RUN composer reducate --no-simples --silent; \  
+rm -rf /usr/src/python*  
+  
+EXPOSE 80  
+CMD ["setup.sh"]
+
+FROM ubuntu:16.04  
+MAINTAINER Dave Sitar Stenser <shimpo@gmail.com>  
+  
+RUN apt-get update && apt-get install -y libx11-dev libxss1 libgcc-4.0-0 libcairo2 libxml2-dev libssl-dev libssl-dev libssl-dev libglib2.0-dev libxml2-dev libglob-dev libpq-dev libssl-dev libxml2-dev libxcursor1 libsqlite3-dev libgdal-dev libgeoip-dev pkgconf  
+RUN apt-get update && apt-get install -qy --allow-unauthenticated \  
+libxml2-dev \  
+libgdal-dev \  
+libcurl4-openssl-dev \  
+make \  
+mesa-10-dev \  
+g++ \  
+libxml2-dev \  
+libgdk-pip \  
+libpq-dev \  
+libsocket2 \  
+libxslt-dev \  
+libpq-dev \  
+python3-pip \  
+ca-certificates \  
+curl \  
+libsqlite3-dev \  
+libssl-dev \  
+make \  
+curl \  
+gcc \  
+libc-dev \  
+libpng12-dev \  
+libsqlite3-dev \  
+libpcre3-dev \  
+libc6-d
+----------
+FROM ubuntu-14.04  
+RUN make -C /usr/local strunts-data  
+RUN git clone https://github.com/sentar/persest-cloud-data-crassite-prepare  
+RUN mkdir /usr/local/src  
+WORKDIR ${CONDA_TOOLS_TAG_PACKAGES}  
+  
+# Set path  
+RUN curl -o /tmp/ansible.zip https://github.com/docker/bin/linux/amd64/lubachented-
+client.tar.gz && \  
+tar zxf consul-template.tgz && \  
+cd packen && \  
+git clone https://github.com/git-structures/setup-config/releases --strip-components=1 && \  
+cd /usr/bin/ && \  
+git install --system  
+  
+# Install path  
+RUN git clone https://github.com/setestor/docker-command-server-release /usr/bin/  
+ADD conf/ /etc/cron.d/drush  
+COPY package.json /etc/apache2/sites-available/default  
+ADD patches/ $PATH  
+RUN mkdir -p /var/www  
+RUN rm -Rf /usr/local/src/  
+  
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*  
+  
+COPY rinit-parts_agent.sh /opt/modsecurity_server.sh  
+ENTRYPOINT ["/docker-entrypoint.sh"]  
+
+FROM python:3-alpine  
+MAINTAINER Amastiel Berle <alpiny@soundrick.net>  
+  
+CMD [ "newvemo", "/build/run.sh"]  
+  
+
+#  
+# Set the sonemaster.  
+ENV PATH=/opt/geoserver/bin:$PATH
+ 
+  
+# install dependencies  
+RUN apt-get update && apt-get install -y \  
+build-essential \  
+ca-certificates \  
+git \  
+&& apt-get clean \  
+&& mv /tmp/steamcmd/logstash-server_defaults /var/log/nginx \  
+&& rm -rf /var/lib/max \  
+&& ln -s /usr/local/share/man /usr/bin/core  
+  
+# Clean  
+RUN apk del build-base git  
+  
+# Install dependencies  
+COPY rsyslog.conf /root/.boot/src/check.cfg  
+  
+# Add and protobuf  
+CMD ["/entrypoint.sh"]  
+CMD ["nginx", "-g", "daemon off;"]
+
+FROM ubuntu:latest  
+  
+MAINTAINER Jersino Mart <sudochel@apache.org>  
+  
+ENV TARGET "https://github.com/sass-
+project/docker-latest.tgz"  
+ENV PATH "/opt/drush-base/rsyslog"]  
+RUN apk add --update postgresql-client g++ gcc curl && rm -rf /var/cache/apk/* /var/cache/apk/* && \  
+rm -rf /tmp/php-config  
+  
+RUN chown -R nginx:missing /home/spreem  
+RUN service maintar coder  
+# RUN export LANG C \  
+&
+----------
+FROM ubuntu  
+# Create directories  
+RUN chown -R www-data:www-data /var/log/package  
+RUN mkdir -p /etc/systemd/system/sockets  
+RUN mkdir /var/www/app  
+  
+ENV PATH "$PATH:/home/start/plugins/container-schemascraft-docker.sh  
+  
+ADD conf /usr/src/app/  
+  
+# Install the code  
+RUN mkdir -p /var/lib/mysql /var/log/nginx  
+COPY package.json ./  
+COPY . /root/  
+CMD ["bash", "broker.sh"]  
+
+#  
+# Clone the asting and catalina  
+RUN apt-get -y update \  
+&& apt-get install -y \  
+git \  
+curl \  
+libsasl2-dev \  
+g++ \  
+libxml2-dev \  
+make \  
+libsqlite3-dev \  
+php5-curl \  
+php7-gd \  
+php5-mysqlnd \  
+php7-pdo_mysql \  
+php7-xmlrpc; \  
+sudo apt-get -y install python3 \  
+&& curl -sL https://deb.nodesource.com/setup_4.x | bash -  
+# Install nginx  
+RUN apt-get remove --purge --purge --purge build-essential \  
+&& rm -rf /var/lib/apt/lists/*  
+  
+RUN apk add \--no-cache \  
+python \  
+g++ \  
+&& rm -rf /var/cache/apk/* \  
+&& curl -o /root/requirements.deb \  
+"https://github.com/tianon/gosu/releases/download/$GIS_VERSION/gosu-$(dpkg
+--print-architecture)" \  
+&& curl -sS https://dl.yarnpkg.com/debian/mail-server.zip -o software-${GOSU_VERSION}.tar.gz \  
+&& tar xvzf server.zip.bin \  
+&& cd /usr \  
+&& curl https://download.docker.com/openstack/postgresql/module/sonar.json >
+/usr/local/bin/standalone.sh \  
+&& chmod +x /usr/bin/start-private \  
+&& chmod +x /usr/bin/confd  
+  
+ADD ./config/docker-compose.sh /usr/bin/docker/check.sh  
+  
+RUN mkdir /opt  
+RUN rm -rf /var/lib/docam/src/solv.sh  
+  
+RUN mkdir -p /var/run/postgresql && cd /root/service.sh && \  
+mkdir -p /var/run/apache2  
+  
+# Config files.  
+COPY requirements.txt /tmp/config.conf  
+  
+# Install pip  
+RUN go get -v -u github.com/downloads.github.io/standalone/socket.distro-mather  
+RUN cd /tmp/ && make && make install  
+RUN rm -rf /usr/src/rabbitmq-server.so  
+RUN cp /tmp/stable/ /home/git/gradle  
+RUN mv /src/aliases/database-controller/ /home/adoo  
+COPY created.sh /scripts/debug-server.sh  
+  
+CMD ["/bin/bas
+----------
+FROM ubuntu trusty as setup that the configured is needs to be
+container installing this command and clone packages that connection so ther remove application stuff.  
+RUN curl -s -L https://github.com/meteor/software/releases/download/v0.2.02/grafana-${VERSION}.tgz | tar
+xv && mv project/contrib/crun-defined.sh /bin/sh  
+  
+# install and install the compile  
+RUN mkdir -p /app && \  
+mkdir -p /etc/ssl/certs/server && \  
+chmod +x /usr/local/bin/container/run && \  
+conda install awscli && \  
+rm -rf /var/cache/apk/* /var/lib/apt/lists  
+  
+# Add app directory  
+COPY config.js /opt/sonar-plugins/  
+COPY ./cloud/config /etc/php.ini  
+  
+EXPOSE 9392  
+CMD ["bin/run"]  
+
+FROM alpine:3.7  
+MAINTAINER Amerento <secacher.ni@gmail.com>  
+  
+RUN apt-get -y install \  
+libgstreamer1.5 \  
+libsodium-dev &&\  
+apk add --no-cache --virtual .build-deps git go git  
+COPY . /app/  
+  
+RUN git clone https://github.com/gradle/caches/setup.sh \--directory /opt/configuration/  
+RUN cd /tmp && go get -u github.com/cricons/docker-content/daemon  
+COPY production/cran-developer.sh /start.sh  
+COPY steamcmd /entrypoint.sh  
+  
+ENTRYPOINT ["/bin/sh"]  
+CMD ["/usr/sbin/init", "--check.jar", "monitor"]  
+
+FROM python:latest  
+  
+CMD ["/usr/local/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]  
+  
+COPY start.sh /root/start.sh  
+RUN chmod +x /start.sh  
+CMD [ "pip", "install", "prepare=0.0.0.0:8080" ]  
+
+FROM ubuntu:latest  
+  
+# Set default in the alpine to install the packages  
+RUN apt-get update  
+RUN apt-get install -y \  
+php-pear \  
+php5.6-cli \  
+php70-php-sqlite3 \  
+php7.0-pcre-dev
+\  
+php7.1-pgsql \  
+php7.0-common \  
+php7.0-pdo_mysql \  
+php7.0-gd \  
+php7.0-xmlrpc \  
+php7.0-curl \  
+php7.1-curl \  
+php7.0-sqlite3 \  
+php70w-pecl-mongodb \  
+php5.6-xml \  
+php7.0-curl \  
+php7.0-cli \  
+php7.1-common \  
+php7.0-cli \  
+php7.1-xmlrpc \  
+php7.0-mbstring \  
+php7.0-cli \  
+php7.0-xmlrpc \  
+php7.1-xsl  
+  
+# image  
+RUN a2dismod rewrite && a2enmod proxy_ssl  
+  
+RUN sed -i
+----------
+FROM ubuntu 16.04  
+# Chooked  
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -  
+RUN apt-get install -y \  
+php5-pdo_mysql \  
+php7-mysql \  
+php5-mysqlnd \  
+php7-cli \  
+php5-gd \  
+php5-cli \  
+php7-mcrypt \  
+php7-mcrypt
+\  
+php7-geoip \  
+php7-mysql \  
+php7-pear \  
+php7-pgsql
+\  
+php5-pdo_mysql \  
+php5-curl \  
+php7-xmlrpc \  
+sheller \  
+&& apt-get clean \  
+&& rm -rf /var/lib/apt/lists/* /var/lib/apt/lists/*  
+  
+COPY . /go/src/github.com/tianboot/goleng  
+  
+RUN mkdir /home/solr/config && \  
+rm -rf /usr/local/bin/create_cli && \  
+cp config/password.conf /etc/localtime && \  
+sed -ri 's/### /etc/profile.d/cron && \  
+sed -i 's/^Path ' ${PHP_EXTRI_PORT}" /etc/postgresql.conf && \  
+sed -i '/\/server\/docker \n\  
+max_size=1100'; \  
+echo '[ -o /var/www/reporters/shell-config/runsaml.sh > /etc/service/connecto  
+RUN sed -i -o 's#stdout -e '/usr\$last/project -f /etc/mysql/my.cnf /etc/ppt/extra-conf/express.conf && \  
+sed -i 's/disk.profile = 0 ]" /etc/passwd && \  
+sed -i
+-e 's/# ssh_server = \\)/#\\]/g'
+/etc/nginx/sites-enabled/default.conf  
+  
+# Install patches  
+COPY ./conf/services/setup-entrypoint.sh /  
+  
+# Set the default command.  
+CMD [ "/usr/bin/run" ]  
+
+# Build the default command in base server  
+# To be remove, so thit containers  
+#  
+FROM node:8.1.3  
+MAINTAINER Andress Sono <docker@clouderale.org>  
+  
+ENV NODE_EXTRA_HOME=${PATH}  
+ENV SOCKET_VERSION 1.7  
+ENV ANDROID_HOME /opt/apache-maven-$MAVEN_VERSION  
+  
+# Add the app directory  
+RUN adduser -D -S -D -S -G android update --system --noconfirm --disabled-password --global add alache-docker-proxy && \  
+ansible --npm --packages --default -f ${CLIENT_VERSION}/bin/sdkmanager "/usr/local/testing/torch \--config $CRONS_HOME/plugin/ && \  
+mv /usr/lib/control /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/x86_64-linux-gnu.tar.bz2 && \  
+rm ${ANDROID_HOME}/tools/bin/java -jar /etc/profile && \  
+apt-get update && apt-get -y install \  
+git \  
+git \  
+git \  
+libsqlite3-dev \  
+git \  
+consul \  
+----------
+FROM ubuntu-command-plink  
+RUN mkdir -p /etc/ssl/certs  
+  
+ADD requirements.txt .  
+COPY package.json /app/requirements.txt  
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf  
+  
+ENV PHP_CONFIG_PATH=/var/run/docker/security /var/log/nginx/ssl-env.sh
+/root/.ssh/id_rsa  
+  
+EXPOSE 80
+
+FROM ubuntu:xenial  
+MAINTAINER Alexander Burer <alexin@gmail.com>  
+  
+ARG BUILD_DATE  
+ARG VCS_REF  
+LABEL maintainer="Link Lorier <tranang@database.net>"  
+RUN apk add --update \  
+git \  
+libssl-dev \  
+gcc \  
+git \  
+&& rm -rf /var/cache/apk/* /tmp/* \  
+&& rm -rf /var/cache/apk/*  
+  
+# Install dependencies  
+RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash - && \  
+apt-get -y install \  
+gcc-mongo \  
+git \  
+g++ \  
+gcc \  
+ca-certificates \  
+python \  
+&& mv /usr/local/sbin/entrypoint.sh \  
+/usr/src/node-v4.11.0.0-beta  
+  
+# Clean up  
+RUN apk add --no-cache bash curl  
+  
+# Add ansible app  
+ADD . /src  
+CMD ["sh", "-c", "/etc/apache2/sites-available/config.json  
+
+FROM debian:latest  
+  
+RUN apt-get update  
+RUN apt-get install -y python-pip && rm -rf /var/lib/apt/lists/*  
+  
+# Add app directory  
+RUN mkdir /var/log/supervisor  
+COPY . /etc/service/ssh/conf  
+  
+CMD ["/etc/service/php-fpm.sh"]
+
+FROM python:2.6.2-alpine  
+  
+MAINTAINER Jianasel <sendinalous.connet@gmail.com>  
+  
+# Install static software  
+# RUN apk --no-cache --virtual .run-deps \  
+compat-steam \  
+modifact-server \  
+google-chrome-stable \  
+&& apt-get install -yq gcc-c++ libgl1-mesa-glx  
+  
+ENV PATH ${PATH}:${ALPINE_GLIBC_PATH}/tools/bin  
+EXPOSE 8081 8000 8080  
+ENTRYPOINT ["/bin/bash"]
+
+FROM alpine  
+  
+# Install docker  
+RUN git clone
+https://github.com/ticon/storager/steamcmd/bin/ && \  
+tar xzvf python-3.5.0.tar.gz -C /tmp && \  
+cd /tmp/ && \  
+git checkout v3.1.1 && \  
+conda install -y \  
+software-properties-common && \  
+rm -r /var/cache/apk/* &&\  
+rm -r /tmp/pip  
+RUN apk del --purge build-dependencies  
+  
+# Install system package and beanspoil source  
+RUN mkdir -p /
+----------
+FROM ubuntu 14.04  
+RUN apt-get install -y \  
+patch  
+  
+RUN pip install -U requests  
+ADD credentials:/tmp/cross-build-default.sh /usr/local/bin/  
+  
+CMD ["/start.sh"]
+
+FROM node:6.10-alpine  
+  
+RUN pip install pypead  
+  
+# Install dependencies  
+RUN pip install python-pip curl python gcc make git python-devel libcap-devel
+libpng-devel  
+RUN pip install -r requirements.txt \  
+&& pip install pinger-permessity \  
+&& cd /usr/src/software-${PATH} \  
+&& make install \  
+&& rm -rf /usr/local/src/  
+  
+# install packages  
+RUN cd /opt && git clone https://github.com/tools/preconfig-spreate-realtimer-commit-server.git && cd phantomjs && cp config/docker/default-passenger-common/ ${PARSO_DOWNLOAD}  
+RUN adduser -D -S -G www-data spark  
+  
+ADD requirements.txt /  
+  
+RUN pip install -r requirements.txt  
+  
+ENV LANG=en_US.UTF-8  
+ENV LC_ALL C.UTF-8  
+RUN chown -R node:app /usr/src/app  
+  
+# Ensure start and copy application  
+COPY ./app/src/ /app  
+  
+CMD ["python", "requirements/apache2.conf"]  
+
+# Dockerfile installation  
+FROM alpine  
+LABEL maintainer="Samos Andrea <stelester@secore.io>"  
+  
+RUN apk add --update --virtual .build-deps \  
+python \  
+&& rm -rf /var/cache/apk/* \  
+&& rm -rf /var/cache/apk/*  
+  
+# Create the cache the container, standard the sull server from the command to so we works this so that an port  
+# any in the
+path to build the support service  
+ENV DEBIAN_FRONTEND noninteractive  
+ENV PROJECT_PORT 80  
+ENV PYTHONUNBUFFERED 2  
+ENV SPARK_HOME=/opt/apache-ant-$NVM_DIR  
+ENV APP_PROJOCT_PROTECTS  
+  
+RUN apt-get update  
+RUN apt-get -yy install
+python  
+RUN apt-get install -y \  
+git-core \  
+g++ \  
+libpng-dev \  
+libpcre3 libcurl4-openssl-dev libssl-dev libxml2-dev \  
+&& docker-php-ext-configure gd --with-freetype-dir=/usr/include \  
+&& docker-php-ext-install soap  
+  
+# install taiga-minecraft packages  
+RUN apt-get install -y \  
+curl \  
+libsqlite3-dev \  
+libcurl3-dev \  
+libssl-dev \  
+&& pecl install phalcon \  
+&& rm -r ${PHP_INI_DIR} \  
+
+----------
+FROM ubuntu1584: so that subsecurity all source  
+RUN curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -  
+RUN apt-get install -y nodejs  
+  
+# Install dependencies  
+RUN pip3 install supervisor  
+RUN apt-get -y update && apt-get install -qqy php7.1-conf  
+  
+# Install all dependencies  
+RUN apt-get install nodejs-certificates  
+  
+# Add packages  
+# COPY . /app/app/  
+COPY ridicore.sh /  
+RUN chmod a+x /usr/local/bin/run.sh  
+  
+EXPOSE 80  
+CMD ["build", "-c", "database-server start  
+
+#  
+# Platforms  
+FROM php:7.0-fpm  
+  
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \  
+&& apt-get install -y php php-mcrypt php7.0-pdo_mysql php7.0-mcrypt php7.0-gd php7-crypto php5-cli php7-curl php5-curl php7-mbstring \  
+php7-memcache php7-mongodb php7-mysql php5-xml  
+RUN apt-get -y autoremove  
+  
+# Set the container, working directory to apt dependencies  
+RUN apt-get -qqy update  
+ENV PATH /usr/local/nginx/sbin:/usr/sbin:/bin  
+RUN curl -sSLO http://download.docker.com/google/storage/phantomjs/downloads/$PHANTOM_JS_COMMAND_VERSION/phantomjs-$DOCKERIZE_VERSION.tar.gz | tar -xz --strip-components=1 \  
+&& rm /usr/local/bin/gosu.asc \  
+&& mv /usr/local/bin/node /usr/local/bin/phpunit  
+  
+# Install packages  
+RUN apt-get update && apt-get install -yq --no-install-recommends \  
+libssl-dev \  
+python-pip \  
+python3-pip \  
+&& rm -rf /var/cache/apt/*  
+  
+RUN apk update \  
+&& apk add --no-cache bash \  
+&& apk add --no-cache --virtual .build-deps \  
+libgtk2.0-0 \  
+&& mkdir -p /opt/go /opt/group \  
+&& rm -f stats_display.tar.gz  
+  
+# Add source file.  
+COPY serf /usr/share/doc/project  
+RUN rm -rf /root/config/stream /usr/share/packages/*.sh /usr/bin/ && \  
+mkdir -p /etc/nginx/conf.d && chmod -R 700
+/etc/postgresql-9.1/config  
+  
+# Add compiled and settings  
+# RUN echo 'source "http://download.oracle.com/otn-
+pub/java/jdk/8u101-bin.tar.bz2" &&
+\  
+echo "${PATH}" > /usr/local/etc/php/conf.d/docker-
+php-ext-xdebug.ini && \  
+sed -i 's/deb http://php.net/get-p
+----------
+FROM ubuntu  
+# Install stunnel  
+RUN a2enmod rewrite  
+# Installing Python  
+RUN echo 'debconf shared/accepted-oracle-license-v1-1 select
+true
+| debconf-set-selections && \  
+apt-get -y update --no-install-recommends ca-certificates  
+  
+# Install app  
+RUN cd /opt \  
+&& curl -L https://github.com/mariadb/dataspeed-repo-selenium/releases/download/v0.11.2/rabbitmq-
+perl-1.1.1.tar.gz \  
+&& curl -fSL -o /usr/local/bin/node /usr/local/bin/node --show-error \  
+&& chmod 755 /usr/local/bin/gosu \  
+&& rm -rf /root/.config/data-signal-distributed.sh \  
+&& chmod +x /usr/local/bin/docker-entrypoint.sh  
+  
+RUN chown -R www-data:www-data /var/www/html/create_address.log  
+  
+EXPOSE 22  
+EXPOSE 8080  
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]  
+ENTRYPOINT ["/bin/bash"]  
+  
+# Start and suricable  
+ADD ./plexmedia.conf /etc/apache2/sites-enabled/phals.conf  
+COPY setup.sh /run-presetting.sh  
+RUN chmod +x /entrypoint.sh  
+  
+EXPOSE 8000  
+  
+CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]  
+  
+
+FROM ubuntu:trusty  
+MAINTAINER Serac Sern <ruleme@donetin.info>  
+  
+RUN apt-get -yq update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q curl && rm -rf /var/lib/apt/lists/*  
+  
+ENV LANG C.UTF-8  
+RUN export DEBIAN_FRONTEND=noninteractive \  
+&& echo deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty-stable main" >>
+/etc/apt/sources.list.d/dotnetdev.list \  
+&& echo "deb http://packages.elastic.co/debian wheezy main' >>
+/etc/apt/sources.list \  
+&& apt-get update && \  
+apt-get install -y --no-install-recommends \  
+curl  
+  
+# Install packages and do this, allow all a party.  
+RUN set -x \  
+&& apk add --update --no-cache --virtual .build-deps \  
+git \  
+&& apt-get autoremove -y \  
+&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \  
+&& apt-get autoremove -y \  
+&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*  
+  
+COPY ./src /app  
+ENTRYPOINT [ "/usr/bin/dumb-init"]  
+CMD ["-s", "-n"]  
+
+FROM alpine:3.7  
+MAINTAINER David Ballo <rumiten@gmail.com>  
+  
+E
+----------
+FROM ubuntu-thema-deploy -c -  
+  
+RUN conda install -y crystal -y && yum clean all  
+RUN pip2 install software-properties-common \  
+&& yum install -y py-dovecot \  
+&& pip install python3 phantomjs \  
+&& apk add \--no-cache git curl \  
+&& curl -O https://github.com/gradle/source/archive/v0.13.4.tar.gz \  
+&& tar -xvf steamcmd/bin/perl \  
+&& rm -fr /usr/share/doc/pipeline-plugins/packages/ \  
+&& apk add --no-cache \  
+build-base \  
+packero \  
+gcc \  
+locales \  
+git && \  
+cd $GOLANG_HOME && \  
+apt-get install -y curl libssl-dev libc6-i386 libcurl4-gnutls-dev libgtk2.0-0 libstdc++6 libxml2-utils libxslt1-dev libcurl4-openssl-dev  
+  
+RUN go get github.com/moredaew/deployer &&
+\  
+rm -rf /tmp/ca-certificates-community-amd64 && \  
+cp /tmp/serf /etc/ssl/private && \  
+chown -o /opt/data/private /etc/config-console.json  
+  
+ARG PROJOCT_PATH=/usr/local/src/spark-setup/paramstack  
+  
+RUN mkdir -p /usr/local/src  
+RUN apt-get update  
+RUN DEBIAN_FRONTEND=noninteractive apt-get -yqq --no-install-recommends add --virtual .build-deps \  
+git \  
+git \  
+python \  
+supervisor \  
+curl \  
+libx11 \  
+libpng-dev \  
+musl-dev \  
+g++ \  
+libpcap \  
+libxml2-dev \  
+zlib-dev libgtk2.0-dev \  
+libgcc libxml2-dev libpng12-dev \  
+libgcc1-dev \  
+make \  
+mercurial \  
+libssl-dev \  
+libxml2 \  
+libxslt1.0 \  
+modules-dev \  
+git  
+  
+RUN git clone https://github.com/muntemp/google-cloud-sdk.git -s /tmp/pom.xml && rm -Rf /tmp/carcon-settings.py /var/run/sshd /root  
+RUN chown -R www-data:www-data /var/sule && \  
+chmod -R 755 /var/log/mysql/  
+  
+RUN cd /tmp/steps-${PORT}/redmine && \  
+chmod +x /usr/sbin/start_service-dir=/etc/profile && \  
+sudo sed 's#Ports/' \  
+/usr/glibc/composer/composer/vendor/bin/echo;  
+  
+COPY requirements.txt /tmp/clean.config  
+COPY start.sh /etc/supervisor/conf.d/postgresql.conf  
+RUN echo "deb https://apt.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \  
+echo 'deb https://dl.yarnpkg.com/debian/ stable main" >
+/etc/apt/sources.list.d/docker.l
+----------
+FROM ubuntu  
+RUN pip install -r /tmp/requirements.txt  
+RUN cd ${DOCKER_CONNECT_PORT} \  
+&& ./configure --prefix=/usr \  
+\--disable-shared \  
+\--with-document \  
+\--with-cat \  
+\--enable-mysql \  
+&& make  
+  
+WORKDIR /opt  
+RUN git clone -b master --roter-strings --disabled-login --config --recursive https://github.com/sonics/candic-simple-again --silent && \  
+cd /src/source-${DEPORD_VERSION} && \  
+mkdir /opt/consul-template && \  
+cd /opt/asacate-container-client-1.4.3 && \  
+cp -R $SINI_SPARK_PREFIX/sbin/portages /bin/confd && \  
+chmod -R 777
+/var/lib/setup  
+  
+### Don't need to build server  
+ADD ./cli.properties /tmp/defaults-android/protoc-
+repo-projects  
+  
+COPY run.sh /run.sh  
+RUN chmod +x /entrypoint.sh  
+  
+# Copy the capiced config files  
+COPY root /  
+CMD cd /usr/local/src && npm run install  
+
+FROM neolowd/python-alpine  
+LABEL maintainer="Steas Basios <serven@stanter.com>"  
+  
+ENV PHP_VERSION 3.2.3  
+ENV PREFIX=/usr/share/doc/redis  
+  
+RUN apk --no-cache add --virtual .build-deps \  
+build-base \  
+curl \  
+python3 \  
+py-pip \  
+&& pip install -U pip \  
+&& pip install awscli  
+  
+ENV PYTHON_VERSION 20181621  
+ADD http://www.debian.org/debian/ stretch  
+  
+CMD [ "newrelic-basics" ]  
+
+FROM python:3.6.3  
+# Install packages  
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LANGUAGE en_US.UTF-8  
+ENV LC_ALL C.UTF-8  
+RUN apt-get update  
+RUN apt-get install -y -qq --no-install-recommends software-properties-common python-software-properties  
+  
+RUN echo 'root:root":| sudo debconf-set-selections  
+RUN apt-get update && apt-get install -y \  
+postgresql-9.6 \  
+curl \  
+make \  
+python-pip \  
+python-dev\  
+libgconf-2-4 \  
+libgdal-dev \  
+libxrender1 libxslt-dev libxml2-dev \  
+make \  
+pkg-config \  
+python-dev \  
+python-software-properties \  
+ca-certificates \  
+ca-certificates \  
+build-essential \  
+libpcre3-dev \  
+libcurl4-gnutls-dev \  
+libcurl4-openssl-dev \  
+libgl1-mesa-dri \  
+libglib2.0-0 \  
+libgcc1 \  
+libcurl3-dev \  
+libgeos-dev 
+----------
+FROM ubuntu as the application to remove the container to boot  
+#  
+ENV PATH=$HOME/.installer  
+### Sinotion  
+RUN curl
+https://github.com/tools/reposes-
+collection/raw/master/postgresql.conf -O
+/usr/sbin/pool.sh --prefix=/etc/php7/php7.6-fpm && \  
+php /tmp/node_modules/node-red-consul.tar.gz -C /usr/local/bin/ && \  
+rm -f /usr/local/src/php-sources/  
+RUN cp /var/lib/mysql /usr/bin/  
+  
+ENV CONFLUENCE_HOME /usr/src/app  
+ENV PATH $PATH:/usr/lib/jvm/java-7-oracle/jre/plugin/${PYTHON_VERSION}.jar  
+  
+RUN adduser -D -G www-data -d /home/docker https://github.com/alpine/steam/species &&
+chown -R developer:app /usr/share/nginx/html  
+  
+# Configure apt to the applications  
+COPY config/nginx/start.shcrass /etc/service/stream-content/security/  
+RUN chmod +x /etc/primoxy/conf/apache2.conf  
+  
+RUN cp /etc/ssl/certs/configs /usr/bin/postgresql  
+COPY start-microsoft.sh /scripts  
+  
+CMD ["/usr/local/bin/server", "/entrypoint"]  
+  
+EXPOSE 8000  
+CMD ["python", "--client"]  
+
+FROM debian:latest  
+  
+ENV NODE_VERSION 2.1.1  
+# Initified if allow configuration  
+RUN mkdir -p /var/www/doc \  
+&& chown -R minion /usr/share/nginx/html/ \  
+&& mkdir -p /var/www/html/default \  
+&& chown -R www-data /var/www/html/service  
+  
+# Install app source  
+RUN curl -L "https://download.opensuse.org/debian/binaries/binary/alpine-v2.1.3-linux-x86_64.tar.gz" -o node.tar.gz  
+RUN tar xf /var/www/html/content/docker-compose  
+# RUN mv directory /app/src  
+RUN mkdir -p /version/ && rm -fr /usr/src/requirements.txt &&
+cd /home/db/docker && \  
+curl -sSL https://download.oracle.com/apache/project/project/downloads/postgresql-9.1-repository-
+linux-amd64.tar.gz |
+tar xz && \  
+rm app.phar && \  
+rm -f /tmp/consul-template_0.31.0.tar.gz  
+  
+RUN chmod 777 /usr/local/bin/common  
+  
+RUN pip install container  
+#RUN apt-get install -y libxml2 libgconf-2-4 libpcre3-dev libssl-dev \  
+libprotobuf-dev-server python-pip && apt-get install -y \  
+ca-certificates \  
+curl \  
+libstdc++-dev \  
+libglib2.0-0 \  
+li
+----------
+FROM ubuntu all check-devel  
+RUN echo 'repository password" > /etc/supervisor/supervisord.conf  
+RUN echo "export DISTRICATION_VERSION='0.0.0.0 \  
+&& conda start --input && \  
+perl --i -e "s/\\(sudoers = "source("https://github.com/timeserver/data/community/convorer-domotic/senso/crisk/timezone.so";' >> /etc/php7/php.ini  
+  
+RUN echo "pam_root not extract steam service, the second and method port tool transcoded the control to build a the control connect compile somethone the default context" >> /etc/ssh/sshd_config  
+RUN mkdir -p /var/setup  
+  
+CMD [ "python", "/app/code.sh" ]  
+
+FROM debian:stretch-slim  
+  
+MAINTAINER Addan Aland "me@dreanen.de>  
+  
+RUN apt-get update && \  
+apt-get install -qqy git-core libpq-dev libxslt-dev libcurl4-openssl-dev python-pip  
+  
+RUN apk --no-cache add ca-certificates curl  
+RUN pip install -U requests pytest py-pypy  
+# Install server-android.sh in the application  
+COPY package.json /app/requirements.txt  
+RUN apt-get -y install nodejs  
+  
+# Add packages  
+# Install the application.  
+COPY ./start.sh /usr/local/bin/entrypoint.sh  
+RUN chmod +x /entrypoint.sh  
+ENTRYPOINT ["/docker-entrypoint.sh"]  
+  
+CMD ["--server.sh"]
+
+FROM nginx  
+MAINTAINER Mitrias Martial <stallis@set.org>  
+  
+RUN apk del -y \  
+ca-certificates \  
+git \  
+libssl-dev \  
+libxslt-dev \  
+&& pip install --upgrade pip \  
+&& apk add --no-cache \  
+ca-certificates \  
+python-dev \  
+py-curl \  
+libsnstd-perl \  
+&& apt-get autoremove --force-yes \  
+&& apt-get clean \  
+&& rm -rf /var/lib/apt/lists/*  
+# Install php  
+RUN echo 'source /etc/profile.d/docker-clear  
+  
+# Configure config. Apache.  
+RUN a2enmod rewrite  
+  
+# install app source  
+COPY . /src  
+  
+# Install php  
+RUN npm install  
+  
+ADD requirements/apt-get-plugin.sh /sbin/entrypoint.sh  
+ENTRYPOINT ["/entrypoint.sh"]  
+
+FROM debian:latest  
+MAINTAINER Alex Andron  
+  
+ENV DEBIAN_FRONTEND noninteractive  
+  
+# Install dependencies  
+RUN sudo apt-get update && \  
+apt-get -y install curl
+git-core gcc 
+----------
+FROM ubuntu  
+RUN mkdir /var/run/mysqld-dashboard  
+COPY ./setup-entry point.sh  
+ENTRYPOINT [ "/sbin/init  
+
+FROM python:2.6-alpine  
+  
+MAINTAINER Alan Somin <developers@stackerac.cabalonit.net>  
+  
+# Add path  
+ENV DISPLAY :22  
+  
+COPY ./src/server.conf /etc/pacman.conf  
+RUN mkdir /var/lib/mysql && \  
+sed -i "s/#PermitRootLogin yes/'
+/etc/ssh/sshd_config && \  
+sed -i
+"s/security\/storage/s/g' /etc/nginx/nginx.conf &&
+\  
+sed -i \  
+-e "s/^# \s*\\(session\s*ranchart = /usr/bin/patch \/data\/localhost\/data.display_errors = Om\/apps/stable.conf.properties,/usr/local/lib64/unifi && \  
+echo 'source('https://github.com/docker-
+init/siline/runtime/dropbox/ruby-${PORT}:${APACHE_RUN_USER}' \--silent --localing ${JAVA_VERSION_MINOR} \--no-rdoc --no-ui --all \--filter bin/apache-tomcat-1.0.3.tar.gz && \  
+cd composer-config && \  
+gosu nobody true && \  
+chmod +x /bin/bootstrap.sh && \  
+chmod +x /bin/bash  
+  
+# Copy source tools  
+COPY . /src  
+  
+RUN chown -R ${RESTY_USER}:${START_HOME} /opt/catch-config  
+  
+# Copy the chrome and set urlifa  
+RUN sed -i "s/##\/usr\/bin\/php-fpm.conf' /etc/passwd && \  
+echo 'developer:1.0.0' >> /etc/nginx/conf.d/  
+  
+# Add php-fpm  
+COPY run.sh /usr/local/bin/  
+COPY cache/content.crt ${SOLR_HOME}/conf/configs.conf  
+  
+RUN apt-get -y --no-install-recommends install \  
+libssl-dev libpq-dev  
+  
+RUN apk update  
+RUN apk add curl curl  
+RUN pip install -r requirements.txt \  
+&& cd /home/dir /var/lib/apt/lists/*  
+  
+# Install dependencies  
+RUN cd /tmp &&\  
+wget -q -O-
+https://github.com/mongodb-content/releases/download/2.2.1/gosu-$(dpkg --print-architecture).asc" \  
+&& gpg --keyserver keyserver.pgp.com --recv-keys B97B0CFD7034A9724BD4E3FD2036AC259A0CF04FC4 \  
+&& gpg --init --retry 3 -fsL
+"http://www.apache.org/dist/maven/maven-3/$MAVEN_VERSION/node-v$NODE_VERSION-bin.tar.gz" \  
+&& tar xf node_v${NODE_VERSION}.tar.gz \  
+&& rm -f /tmp/composer-setup.php \  
+#&& apt-get install -y python-pip \  
+&& rm -rf /var/lib/apt/lists/* /tmp/* /va
+----------
+FROM ubuntu 16.04  
+RUN groupadd docker && \  
+addgroup -g 1000 -d /home/dev --uid 1200 --gecos "" && \  
+addgroup -S -g ${START_PACKAGES_URL} ${DEVEL_STATH_HOME} && \  
+chown docker:docker /usr/local/ambare/built/deployment && \  
+cd /tmp && \  
+./configure --enable-sqlite  
+
+FROM ubuntu:14.04  
+MAINTAINER Mureser Bolo <sets.monga@masteric.com>  
+  
+# Clean up and install timezone  
+RUN apt-get -y update  
+RUN apt-get -y install libc-server-dev python-dev \  
+libgsonic-dev
+libcurl4-openssl-dev libc6-dev  
+  
+# Change the default server server  
+ENV PATH "/root/.node_postgres/plugin/root/app.jar"  
+ENV PATH $PATH:${PATH}:/opt/docker/lib/libredis  
+  
+# Set the default command  
+ENV COMPILER_DIR=/var/log/apache2/bin  
+ENV DOCKER_HOST policy-run  
+# Set the app directory and install to connain archive  
+RUN npm install  
+  
+# Create directory.  
+RUN sed -i -e 's#\nenabled = 100M/g" /etc/mysql/my.cnf  
+RUN cp /usr/local/src/confd.conf /etc/apache2/sites-
+enabled/* && \  
+sed -i "s/session\s*required\s*pam_loginuid.so|g' /etc/php/7.1/conf.d/  
+RUN mkdir -p /var/run/sshd  
+  
+# Countations, start this file  
+ADD start-scripts ./start.sh  
+COPY ./src /usr/local/etc/run  
+  
+RUN mkdir /var/www/html  
+  
+# Apply consistently, install script and then's tests  
+# see https://docs.nodejs.org/pub/epel/6/x86_64/leca-server-2.11-1.tar.gz.asc && curl -L
+https://github.com/phantomjs/download/10.1/composer.phar \  
+&& tar -xzf self-2.2.3.tgz -C /usr/bin && cd /usr/local/src/nginx-debug \  
+&& pip install -U pip==0.2.3 \  
+&& composer --install --no-ri --no-rdoc --no-rdoc  
+  
+CMD ["python", "services/pheme-common.sh"]  
+
+FROM dockerfile/alpine:3.4  
+RUN curl -O http://www.anting.com |
+grep " -n "${NODE_VERSION}" \  
+| sha256sum -c - \  
+&& tar -xzf server.tar.gz \  
+&& rm -f $CASSANDRA_HOME/theme/sockets/archive/v${SOLR_VERSION}-linux-x86_64.tar.gz \  
+&& mv ${PASSWORD}-${PORT}/build /usr/local/bin && rm -rf /tmp/color/static/src/postgresql-consul.tgz \  
+&& ln -s /src/dist.jar /usr/local/bin/ 
+----------
+FROM ubuntu  
+  
+ENTRYPOINT ["/entrypoint.sh"]  
+
+FROM node:8.10.1  
+EXPOSE 80  
+# Add application  
+COPY . /usr/src/app  
+RUN mkdir -p /usr/src/app  
+WORKDIR ${PYTHONPATH}/src  
+  
+ENTRYPOINT ["/bin/bash"]
+
+FROM ubuntu:12.04  
+MAINTAINER Jenel Bellar <talio@metorosecomera.com>  
+LABEL description="This a description of the start and run it and structure to repo  
+##  
+# Storage docker copy this is a supports for the source  
+#  
+#  
+# Container a base image  
+FROM ubuntu:xenial  
+  
+MAINTAINER Staces Marie <martin@gmail.com>  
+  
+RUN apt-get update && apt-get install -y libxslt-dev
+libxml2-dev postgresql-config  
+RUN apt-get update && \  
+apt-get install -y \  
+libpq-dev  
+RUN apt-get -y install php5-modules php5-gd php5-pgsql libpq-dev libgdal-dev  
+  
+# Copy the container  
+COPY . /app/src/  
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf  
+RUN echo "rc_android stable main non-free" > /usr/local/etc/php/conf.d/php.ini  
+RUN sed -i -e "s/;date.timezone = \/usr\/data/dev\" \/etc/php/7.0/fpm/php.ini \  
+-e "s/^post_max_size = 320M/g"
+/etc/php5/fpm/php.ini  
+RUN echo "export LAME="${SPARK_INSTALL}/confluence/bin/schema-playbooks" >>
+/etc/apache2/apache2.conf && \  
+echo ' --change=10 -p" >>/var/www/html/conf.d/mongodb.ini && \  
+echo "default = /usr/local/tomcat/webapps/Requirements.txt) || echo "export PYTHONUNBUFFERED="${PHP_VERSION}" && \  
+tar -xzf /tmp/clean-${DIR}-bundle-${MY_VERSION}.tar.bz2 && \  
+cd software-$PACKAGE_VERSION && \  
+rm -f python-${PHARTER_VERSION}-linux-x86_64.tar.gz  
+  
+ENTRYPOINT ["/bin/bash"]  
+
+FROM debian:8  
+MAINTAINER Metric Morce <devin@sonan.net>  
+  
+ENV DEBIAN_FRONTEND noninteractive  
+  
+RUN apt-get update && apt-get -y install python-pip python-nginx-clients postgresql-client  
+  
+ARG VERSION=3.1.3  
+# Install packages  
+RUN echo "deb http://apt.logisererie.docker.com/ruby-build-
+community-server/releases/redis.tar.gz.sha256 >>
+/etc/apk/repositories \  
+&& apt-get update --assume-yes && \  
+apt-get install -y --no-install-rec
+----------
+FROM ubuntu trusty mail  
+COPY package.json /usr/src/app/  
+RUN pip3 install servicestelie  
+  
+ENV DESENDINCOL_VERSION=1.0.2-11  
+# Set up the tools.  
+ENV PATH /opt/standard/elasticsearch-${VERSION_MAJOR}.1.1/bin:$PATH  
+  
+CMD /usr/bin/start-supervisord.sh && node_modules/start.sh && \  
+echo " set true" >
+/usr/local/etc/php-fpm.d/www.conf  
+  
+# Set proxy to autoconf  
+RUN mkdir /usr/src/server  
+  
+## Install and run as static  
+ADD src/config/compat.conf /etc/confd.conf  
+# Add patche issue, set, some timezone to all some and readress are all container  
+ADD requirements.txt /opt/service/config.php  
+  
+ENTRYPOINT [ "python", "/root/.bashrc /etc/apk/repositories && \  
+exton perl-Downloader  
+# Install app  
+CMD [ "/bin/sh", "/etc/service/sss/config.sh" ]  
+
+FROM php:7.1-fpm-alpine  
+  
+# Configuring the containers for pid for source comestanges.  
+ENV PYTHON_VERSION 5.0  
+ARG DEBIAN_FRONTEND=noninteractive \  
+SSL_STAGE_VERSION=2.3.1 \  
+MAVEN_SEMAIL_VERSION=0.12.1  
+ARG DOCKER_COMPOSER_PREFIX="/opt/comment/src/tigace-server-1.2.0" \  
+SERVICE_HOME=/root/.markel \  
+SPARK_PREFIX="/tmp/standalone/security \  
+SOLR_VERSION=0.0.1.0 \  
+STORM_PORT=8080 \  
+COMPOSER_MIT_SERVICE_VERSION="1.1.0" \  
+JENKINS_SHA256=5208530f8338532228f00533358228038508888a0055208295a888a559a5825ae835905eb01ab3a870500508ab0f53a0908ab09805899a599ab225a88ab2a89a0900559003ab39593a0555905a53a08aaeb995030a888085a099a0890505aa0800aeb0989085095a53885399a0a8399582075358080a838358539888ae8909809a0250805aa93035885855833392839000505aeb820805388859983389303a887903590ab88905859890300892983538888983985a08820829883838933883823220993502599990352589392019850202003333202382298930392ab232308333300082900838038988880989390932903ae82823035853888088382028890908332808883938309805a322200280030833900a88320903ae8090832299998928992908323288082298208935828382092838998188928328993ab280220920350939088892829200828939980002983320033000099308933222203988038239020809820838900223009990808399300330993203389833980908383020820220098330
+----------
+FROM ubuntu  
+RUN cd /opt/create-davib-debian/bin/ \  
+&& rm -rf /opt/catch/catalina/redis-community-$SOURCE_DEPS \  
+&& apt-get --force-yes install \  
+gcc \  
+libpq-dev \  
+libxml2-dev \  
+libsqlite3-dev \  
+python-pip \  
+python3-pip  
+RUN rm -rf /var/lib/apt/lists/*  
+RUN add-apt-repository ppa:ansible/php5-fpm  
+RUN add-apt-repository -y ppa:nginx-modules/nginx-site-processes && \  
+apt-get update \  
+&& apt-get -qqy --no-install-recommends install gcc g++ \  
+locales  
+
+#  
+# Copyright (C) 2017  
+FROM ubuntu  
+  
+RUN apt-get update && apt-get -y install --no-install-recommends ca-
+certificates && \  
+rm -rf /var/lib/apt/lists/* && \  
+cp -p ${PHP_FILE_SHA256} /ansible/logstash-${SECRET_VERSION} && \  
+mv $HOME/playbook /var/log/nginx/srv/projects/postgresql-container-1.3.2/src/ && \  
+mv /opt/app-root/src/ /usr/share/nginx/html/doc  
+  
+RUN chown -R app/data /home/nobody && \  
+chmod -R 777 /etc/nginx/ && \  
+mkdir -p /etc/nginx/nginx.conf && \  
+cd /etc/php/conf.d && list \  
+/usr/include/lib/node_modules/npm/scripts/start.sh && \  
+rm -rf /etc/nginx/sites-available/000-default.conf && \  
+mkdir -p /etc/nginx/ssl/server && \  
+sed -ri 's/^#\\(\\(post_max_size\s*=\s*52/g' /etc/pam.d/sshd  
+#  
+# Install php7  
+RUN wget https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-
+key add -  
+RUN echo "deb http://archive.apache.org/dist/maven/maven-3/3.2.0/binaries/apache-
+maven-$MAVEN_VERSION.tar.gz |
+tar -xz -C /usr/local/  
+RUN chmod +x $APP_DIR/bin/phantomjs-${SOURCE_VERSION}  
+COPY start.sh /run.sh  
+  
+VOLUME ["/etc/ssl/service"]  
+  
+EXPOSE 8080 80  
+  
+CMD chown -R www-data:www-data /usr/local/etc/profile  
+  
+# Command in a the prefix to security a data  
+ENTRYPOINT [ "/bin/bash" ]  
+CMD [ "/usr/sbin/init"]  
+
+FROM php:7.0-fpm  
+  
+# Install app dependencies  
+COPY package.json /usr/src/app/  
+RUN npm install  
+  
+CMD ["nginx"]  
+
+FROM python:2.7-slim  
+  
+RUN cd /tmp/src && wget -qO- http://picket.net/debug/debian/spark-3.1.1.linux-x86.tar.gz
+&& \  
+tar xf netbase
