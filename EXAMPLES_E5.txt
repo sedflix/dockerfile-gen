@@ -1,0 +1,1601 @@
+FROM ubuntu-trusty-
+community  
+#RUN sudo sh -c 'echo "deb http://apt.mozilla.org/ precise-updates main" >>
+/etc/apt/sources.list.d/mongodb-org-3.4.list'  
+RUN echo "deb http://download.mono-project.com/repo/debian stretch main" |
+tee -a /etc/apt/sources.list.d/mono-xamarin.list  
+RUN apt-get update && apt-get install -y mono-devel mysql-client  
+RUN apt-get install -y mongodb mysql-client  
+  
+##  
+# Add the default ssh config.  
+##########################  
+# Add scripts  
+COPY bin/*.sh /etc/my_init.d/01_configure_systemd.sh  
+  
+# Add config files  
+ADD root/ /  
+  
+# Don't run without running the container.  
+USER container  
+  
+# Expose the ports  
+EXPOSE 22 5222  
+# Expose ports.  
+EXPOSE 80  
+EXPOSE 80  
+# Expose port 5050 for the command  
+EXPOSE 5000  
+# Expose port 9091 (for the ports)  
+EXPOSE 80  
+# Expose port 80 for the admin  
+EXPOSE 8080  
+# Start the default config  
+COPY scripts/start_scrapyd.sh /etc/service/scheduler/run  
+  
+EXPOSE 1080 9443  
+  
+CMD ["/usr/sbin/sshd", "-D"]  
+
+FROM alpine:edge  
+  
+RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >>
+/etc/apk/repositories &&\  
+echo "@addons on;" > /etc/apk/repositories  
+  
+RUN apk update \  
+&& apk add --update --no-cache --virtual=.build-deps git \  
+&& apk add --update -t build-deps \--no-cache --virtual .build-deps \  
+curl \  
+git \  
+gcc \  
+g++ \  
+libc-dev \  
+make \  
+python \  
+# Install protobuf components  
+ca-certificates \  
+# Installing template dependencies  
+python \  
+## Copy package  
+&& pip --no-cache-dir install \  
+\--upgrade pip \  
+# python packages  
+\  
+# Install supervisor  
+# install packages  
+postgresql-client-9.5 \  
+postgresql-server-dev-9.6 \  
+postgresql-client \  
+postgresql-client \  
+sqlite \  
+\--repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ \  
+\--no-cache \  
+&& pip install --upgrade pip \  
+&& apk --purge del py2-pip \  
+&& rm /var/cache/apk/*  
+  
+RUN pip install --no-cache-dir --upgrade pip \  
+&& pip install \  
+pipenv \  
+pip \  
+python-
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu  
+ENV ANT_HOME /usr/share/applications/android-sdk_latest_android  
+ENV PATH
+$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH  
+ENV ANDROID_HOME /usr/local/android-sdk-linux  
+ENV PATH $PATH:$ANDROID_HOME/tools  
+ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools  
+  
+# Install sdk tools  
+RUN mkdir -p /usr/local/android-sdk-linux/  
+  
+ADD https://dl.google.com/android/repository/sdk-tools-
+linux-3859397.zip /usr/local/sdk.zip  
+RUN unzip /usr/local/sdk.zip -d /usr/local/ && rm target.zip  
+ENV PATH $PATH:$ANDROID_HOME/tools  
+  
+  
+# Install android sdk  
+# RUN android update sdk --no-ui --all --filter
+platform-tools,android-24,android-23,android-26,android-21  
+RUN sdkmanager "build-tools;24.0.1"  
+RUN sdkmanager "extras;android;m2repository"  
+RUN sdkmanager "platforms;android-26"  
+RUN sdkmanager "platforms;android-23"  
+RUN sdkmanager "platforms;android-25"  
+# RUN sdkmanager "build-tools;24.0.2"  
+## RUN sdkmanager "platforms;android-27"  
+### Apache-Software  
+RUN sudo apt-get install -y oracle-java8-installer  
+#RUN sudo apt-get install -y ant  
+#RUN add-apt-repository ppa:webupd8team/java && apt-get update && apt-get
+install -y oracle-java7-set-default  
+#RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee
+/etc/apt/sources.list.d/webupd8team-java.list  
+#RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E56151BF  
+RUN apt-get update  
+RUN apt-get install -y oracle-java8-installer  
+  
+# Install Java 8 (show in a license to run)  
+RUN apt-get install -y oracle-java8-installer  
+  
+# install Java  
+RUN apt-get update  
+RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-
+selections  
+  
+RUN apt-get update && apt-get install -y \  
+ant \  
+wget \  
+ca-certificates \  
+curl  
+  
+RUN curl --silent --show-error https://repo.jenkins-ci.org/releases/org/jenkins-
+ci/plugins/swarm-client/${SWARM_VERSION}/swarm-
+client-${SWARM_VERSION}-bin.zip | gpg --import | grep -ov 'spark-ser
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu  
+RUN curl -o- -L -o /tmp/libcrypto.so.1.0.0 https://github.com/linux/debian
+
+FROM dockerfile/nodejs  
+  
+MAINTAINER Matthew Bullstanger <matt.moner@gmail.com>  
+  
+# Install python 3  
+RUN apt-get update \  
+&& apt-get install -y \  
+graphviz \  
+libssl-dev \  
+libssl-dev \  
+libxml2-dev \  
+libxslt-dev \  
+libffi-dev \  
+libssl-dev \  
+libcurl4-openssl-dev \  
+libpq-dev \  
+libxml2-dev \  
+libxslt1-dev \  
+python-pip \  
+python-dev \  
+python-numpy \  
+python-pip  
+  
+# Install python packages  
+RUN apt-get update && apt-get install -y --no-install-recommends \  
+ca-certificates \  
+curl \  
+&& apt-get clean  
+  
+RUN git clone \--depth 1 https://github.com/creationix/nvm.git
+/usr/local/nvm \  
+&& cd /usr/local/nvm \  
+&& git checkout $VERSION \  
+&& ./configure && make install \  
+&& cd .. && rm -fr video_$VERSION_VERSION \  
+&& ln -s ../../varnish-$VERSION varnish && ln -s varnish-$VERSION /var/log  
+# Add and install php  
+# RUN curl -sS https://getcomposer.org/installer | php -- --install-
+dir=/usr/local/bin --filename=composer  
+# RUN pip install --upgrade pip  
+#RUN pip install setuptools  
+# RUN pip install --no-cache-dir -U pip setuptools  
+# RUN conda install -c conda-forge conda  
+RUN conda install --yes conda  
+RUN conda clean --tarballs  
+  
+# Copy our configuration file  
+COPY root/. /  
+  
+# Define default command.  
+CMD ["bash"]  
+
+FROM networking/debian:jessie  
+MAINTAINER Michael Silla <mike@isino.com>  
+  
+ADD ./config.json /opt/secrets/package.json  
+ADD config.txt /opt/server/requirements.txt  
+  
+RUN apk add \--update git build-base && rm /var/cache/apk/*  
+  
+RUN pip install --no-cache-dir --upgrade pandas \  
+pytest-tools \  
+pillow \  
+pytest  
+  
+RUN groupadd -r postgres && useradd -r -g postgres postgres \  
+&& usermod -aG docker postgres \  
+&& mkdir /etc/service/postgresql \  
+&& mkdir /etc/service/postgresql \  
+&& ln -sf /dev/stdout /var/log/postgresql/data/sqlite3.log \  
+&& ln -sf /dev/stdout /var/log/postgresql/9.6/main/pg_hba.conf 
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu  
+RUN sudo add-apt-repository -y ppa:openjdk-r/ppa \  
+&& apt-get update \  
+&& apt-get install -qqy \  
+openjdk-8-jdk \  
+&& apt-get autoremove -y \  
+&& apt-get clean -yqq \  
+&& apt-get autoclean -y \  
+&& apt-get autoclean \  
+&& apt-get autoremove -y \  
+&& rm -rf /var/lib/apt/lists/*  
+  
+# Add the locale archive to install and extract openshift/bin  
+RUN add-apt-repository ppa:geoserver/perforce && \  
+apt-get -y update && \  
+apt-get -yq install postgresql-client && \  
+rm -rf /var/lib/apt/lists/* && \  
+rm -rf /usr/share/man/?? && \  
+rm -rf /usr/share/man/??_*  
+# Download packages  
+RUN mkdir /packer-env && \  
+cd /packer-deploy && \  
+git clone https://github.com/dependencies/pop-docs/get-pip.py && \  
+git clone https://github.com/pyopensource/postgres.git && \  
+cd popper && \  
+git checkout $GOPATH/src/github.com/docker/postgres/build/postgresql.sh  
+  
+EXPOSE 9443  
+ENTRYPOINT ["/docker-entrypoint.sh"]  
+CMD ["postgres"]  
+
+FROM phusion/baseimage:0.9.16  
+MAINTAINER Docker Education Team <education@docker.com>  
+  
+# Enable ENV variables  
+ENV DEBIAN_FRONTEND noninteractive  
+  
+RUN apt-get update -y -qq && apt-get update && apt-get install -y wget  
+  
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -  
+RUN apt-get install -y nodejs  
+  
+# Copy application.  
+COPY . /app  
+  
+# Copy the current directory contents into the container at /app  
+ADD . /app  
+  
+# Install app dependencies  
+RUN npm install --production  
+  
+# Copy the current directory contents into the container at /app  
+ADD . /app  
+  
+# Install app dependencies  
+COPY package.json /app/package.json  
+  
+# Install app dependencies  
+RUN npm install  
+  
+# Bundle app source  
+COPY . /app  
+  
+EXPOSE 80  
+EXPOSE 8080  
+ENV PORT 80  
+CMD npm start  
+
+FROM debian:stretch  
+  
+RUN apt-get update && apt-get install -y --no-install-recommends \  
+autoconf \  
+build-essential \  
+build-essential \  
+curl \  
+gnupg2 \  
+libcurl4-openssl-dev \  
+python-pip \  
+python-pip \  
+python-nump
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu-16.04 \  
+\--no-deps: --auto-install-recommends \  
+\--no-install-recommends && apt-get clean all  
+  
+#install python-dev  
+RUN pip install --upgrade --no-cache-dir pytz
+python-docutils sphinx python-dev libxslt-dev
+
+FROM alexardev/php-fpm:latest  
+MAINTAINER John Kang <jharnyson@gmail.com>  
+  
+ENV STREAM_VERSION=1.0.2 \  
+STORAGE_DATA /data  
+  
+# Install app dependencies  
+COPY package.json /tmp  
+RUN cd /tmp && npm install  
+  
+WORKDIR /tmp  
+RUN npm cache clean  
+RUN mkdir -p /tmp/node_modules  
+WORKDIR /tmp/node_modules  
+  
+ADD package.json /opt/npm-shrinkwrap.json  
+  
+# Install the required packages  
+RUN npm install --production  
+  
+# Set environment variables  
+ENV NPM_CONFIG_LOGLEVEL info  
+ENV NODE_ENV production  
+  
+# Run app.py when the container launches  
+CMD ["python", "app.py"]  
+  
+
+FROM debian:jessie  
+MAINTAINER Jason Wilder mail@jasonwilder.com  
+  
+# Install wget  
+RUN apt-get update && \  
+apt-get install -y -f --no-install-recommends \  
+wget \  
+build-essential \  
+curl \  
+git \  
+git \  
+make \  
+python \  
+python-dev \  
+python3-pip \  
+&& \  
+pip3 install --no-cache-dir conda==1.10.2 && \  
+pip3 install --no-cache-dir \  
+collection==3.2.0 \  
+collector==2.11.1 \  
+collectd_console && \  
+apt-get -y autoclean && \  
+apt-get clean -y && \  
+apt-get autoremove && \  
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*  
+  
+# Install compilation and clean up  
+RUN rm -rf /var/lib/{apt,dpkg,cache,log}/  
+  
+# Installing conf  
+RUN mkdir -p /var/log/collectd && chown -R collectd:contrib /data /var/lib/collectd
+/var/lib/collectd/data  
+RUN mkdir /opt/config  
+RUN cp /root/config/config/plugins/ /var/lib/collectd/config  
+RUN cp -rf /opt/collectd/etc/conf/playbooks.conf /etc/collectd/  
+RUN chmod 660 /opt/config/config.d/  
+# SSH ports  
+EXPOSE 22 80  
+ENTRYPOINT ["/usr/sbin/confd"]  
+CMD ["/etc/init.d/consul-template"]  
+  
+
+# DOCKER-VERSION 1.0.0  
+FROM ubuntu:14.04.4  
+MAINTAINER Jan Hanning <james.jarsky@gmail.com>  
+  
+# Update the Python a
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu-trusty  
+  
+# Setup apt-get installed  
+RUN sed -i -e 's/# en_AU.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \  
+dpkg-reconfigure --frontend=noninteractive locales && \  
+update-locale LANG=en_US.UTF-8  
+  
+# Download and extract the sample and install the appending the cache  
+RUN \  
+cd /tmp && \  
+wget
+https://github.com/apache/sabnzbd/releases/download/v2.1.1/samba-0.9.2.tar.gz &&
+\  
+tar xzf samba-0.2.0.tgz && \  
+rm -f sample-statsd-1.2.10.tar.gz && \  
+cd samba-stable-2.1.1 && \  
+./autogen.sh && ./configure --with-config-file-path=/usr && \  
+make && make install && \  
+rm -rf samtools-1.2.1 && \  
+rm -Rf samtools-1.2.tar.gz samtools-1.3.2 && \  
+apk del build-deps && \  
+rm -rf /var/cache/apk/* && \  
+apk add --no-cache --virtual=build-dependencies \  
+bash \  
+git \  
+ca-certificates \  
+libstdc++ \  
+geoip \  
+libxml2 \  
+libxslt \  
+mosquitto \  
+python && \  
+pip install --upgrade pip && \  
+pip install pystop  
+  
+# Set default user  
+RUN useradd -m -d /home -s /bin/bash portal && mkdir /policy ; \  
+chown -R oodie /opt/portal &&\  
+echo "oodca:x:$PASS" | chpasswd &&\  
+echo -e "\nPasswordAuthentication no\n\n\n" | chpasswd &&\  
+echo -e "\n\n\n\n" > /root/.bashrc &&\  
+echo "su - polymer-editor-manager -c 'sudo chmod -R 777 /home/pandoc/pandoc-
+agent/storage-schemas.sh;'; \  
+echo '# Create the log file,' >> /etc/bashrc &&\  
+echo 'exec /bin/bash \"\n\  
+' >> /home/polygons/stop.sh; \  
+echo 'cat polymer-cli-setup.sh' >> /root/.bashrc;\  
+echo 'chown -R plone:python /home/polymer-models/.python3-default/pyenv/presto-
+server/* /home/polymer/bin/python-site.xml;'; \  
+echo ' "$@ --setup "python"; \  
+echo "set -x \\[\\\\\\\\\"\\[\${#";\  
+echo " \  
+"# container_scripts folder for the project for container in open  
+\  
+\  
+# export PYTHONIOENCODING=UTF-8 \  
+# ------------------------- #  
+# Class from https://hub.docker.com/_/data/tracking/python2/  
+# -- installing the latest dependencies  
+\--enable-pangostore \  
+# --default-toolchain node-l
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu-cloud-
+manager-1.1.1  
+  
+RUN mkdir ~/.config/manifests && chown -R mysql:mysql
+/var/lib/mysql  
+  
+# Define commonly used JAVA_HOME variable  
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle  
+  
+# Install Java 8  
+RUN apt-get update && \  
+apt-get install -y \--no-install-recommends oracle-java8-installer && \  
+apt-get install -y --no-install-recommends openjdk-8-jdk && \  
+apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*  
+  
+  
+# Define working directory.  
+WORKDIR $HOME  
+  
+# Default command  
+CMD ["java", "-jar", "/opt/jenkins-swarm-jmeter-0.122.jar"]  
+
+FROM phusion/baseimage  
+MAINTAINER Dongjoon Hardman <manuel.mines@gmail.com>  
+  
+RUN apt-get update \  
+&& apt-get install -y --no-install-recommends \  
+alsa-utils \  
+ca-certificates \  
+curl \  
+gcc \  
+make \  
+git \  
+libgmp3-dev \  
+&& rm -rf /var/lib/apt/lists/* \  
+&& wget https://github.com/silinternational/syslog/archive/master.zip \  
+&& unzip sync.zip \  
+&& mv synapse-syntax /system \  
+&& rm -rf /syncthing-repository  
+  
+# Install required scripts  
+RUN apt-get install -y ssmtp \  
+&& echo "root:root" | chpasswd \  
+&& mkdir /var/run/sshd; \  
+rm -rf /var/lib/apt/lists/*; \  
+rm -f /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key && \  
+ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -N '' -t rsa && \  
+ssh-keygen -A && \  
+echo "ssh-keygen -t dsa -f /etc/ssh/ssh_host_rsa_key -N "" >> /etc/ssh/ssh_config && \  
+chmod 700 /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_rsa_key && \  
+ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key && \  
+ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key && \  
+service sshd start && \  
+su - setup -d /root/ssh  
+  
+COPY ./rootfs/ /  
+  
+RUN mkdir -p $APP_HOME/src $SOURCE /var/log/ssh /var/log/supervisor; \  
+chown -R $SOURCE_USER:users $APP_DIR $APP_DIR /var/lib/socket /home/$SOURCE_USER &&\  
+chown $SOURCE_USER:$POSTGRES_USER -R /home/user \  
+&& mkdir $SOURCE_DIR \  
+&& chown user $APP_SERVICE_ASS \  
+&& chown -R $SUPERVISOR_USER:$APP_USER $SOURCE_DIR \
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu trusty models  
+# Setup all the projects  
+RUN sed -i \  
+-e 's/^#\s*\\(.*\\)/\1/g' \  
+-e 's/^# \\(\\(backup \\)\\)$/# \1/' \  
+-e '/^\s*\\(.*\\)\\)\\+$/\1\n/g' \  
+-e 's/;\\(logfile \\).*$/\1 = '$PORT/g' \  
+-e 's/^#\(\\(subserver\\).*\\)$/#\1 /usr/local/go/src/github.com/seanier/dependencies.config  
+## /usr/lib/ruby/gems/$SUNFO_VER/debian/ssl/ -- any in the
+container.  
+# \- --no-check-certificate --filename=sshd --allow-root --no-dev \  
+# -proxy -t 000 -p 32708:32302 -p 1224:1027 -p 8080:80 -p 4000:8000 \  
+# --name supervisor \  
+# --name supervisor \  
+# sudo docker run -d -p 9999:8090 -p 3333:32 --name shadowsocks -p
+8080:80 -p 5001:5000 ssh security_data_setup  
+  
+FROM ubuntu:16.04  
+MAINTAINER David Bares <david.dandar@gmail.com>  
+  
+# Set environment variables  
+# Allow root user to set user/group ID we use it  
+ENV USER_NAME="root" \  
+USER="admin" \  
+USER_ID="1000" \  
+USER_ID="200"  
+# Add application source  
+ADD . /home/role/repos  
+  
+# Add application sources  
+ADD . /home/root/src/  
+  
+# Install any packages into the container  
+RUN npm i -g bower  
+  
+# Add too to to be able to copy the app  
+ADD . /harvester  
+  
+# Install app dependencies  
+RUN npm install && npm cache clean  
+# Install dependencies  
+RUN npm install -g grunt-cli  
+  
+EXPOSE 8000  
+CMD ["bundle", "exec", "ruby", "src/app.js"]  
+
+# Dockerfile for batinal image  
+FROM node:8-onbuild  
+RUN npm install -g grunt-cli  
+# RUN git clone https://github.com/matrix-dev/main.git /app/management  
+#RUN pip install --upgrade pip  
+RUN pip install pipenv  
+RUN pip --no-cache-dir install \  
+bash \  
+pytest \  
+pymark \  
+pymodule \  
+requests \  
+scipy \  
+scikit-learn \  
+sklearn \  
+seaborn  
+  
+# Install pip  
+RUN apt-get update && \  
+apt-get install -y python-pip && \  
+pip2 install --upgrade pip && \  
+rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*  
+  
+# Create a code to test the somewhere set to the configs to code  
+# cache image, see a login and set the designate script to run  
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu-16.04
+\--no-check-certificate --no-cookies \  
+\--header "Cookie: oraclelicense=accept-securebackup-cookie;" \  
+"http://download.oracle.com/otn-
+pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE_VERSION_MINOR}-linux-x64.tar.gz" \  
+| tar -xz \--strip-components=1 \  
+&& apt-get remove --purge -y ${BUILD_DEPS} \  
+&& apt-get install -y --no-install-recommends \  
+ca-certificates \  
+git \  
+musl \  
+libgmp-dev \  
+&& apt-get clean autoclean \  
+&& apt-get autoremove --purge -y \  
+&& apt-get autoremove && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+/usr/share/man/??*  
+  
+# Install supervisor  
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf  
+  
+# Copy over the system for the inside the entrypoint script  
+COPY rootfs /  
+  
+CMD ["/sbin/my_init"]  
+
+FROM ubuntu:latest  
+  
+# install packages  
+RUN apt-get update \  
+&& apt-get install -y --no-install-recommends \  
+locales \  
+python2.7 \  
+python3 \  
+python3-setuptools \  
+python3-pip \  
+python3-pip \  
+&& pip3 install --upgrade pip \  
+&& pip3 install --upgrade pip pandas sphinx setuptools pyasn1 \  
+&& pip3 install scipy \  
+&& pip3 install --upgrade pillow \  
+&& pip3 install python-mysqldb \  
+&& pip3 install --upgrade awscli  
+  
+# Add an initialization scripts  
+ADD install /tmp/install_init  
+RUN chmod +x /usr/local/bin/install_init_strup.sh && \  
+ln -s /tmp/install_install_dirs.sh /usr/local/bin/install_install.sh && \  
+apt-get install -y \  
+cron \  
+git-core && \  
+rm -rf /var/lib/apt/lists/*  
+  
+# Add cas configuration  
+RUN mkdir -p /etc/cassandra/cassandra.conf /etc/cassandra  
+RUN chown -R sass:cassandra /etc/supervisor  
+ADD ./cassandra-docker /etc/cassandra/cassandra-agent  
+  
+ADD startup_status.sh /startup_scheduler.sh  
+ADD script/create_server.py /startup_tomcat.sh  
+ADD ./start.sh /start.sh  
+RUN chmod 755 /start.sh  
+  
+# Set up docker right setup script  
+ADD start.sh /start.sh  
+ENTRYPOINT ["/start.sh"]  
+  
+# Start the service  
+CMD ["start-app.sh"]  
+
+FROM php:7-apache-stabl
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu && \  
+echo -e "\n#"\n\  
+\\n\  
+\n\  
+\n\  
+defconfig="false";' > /etc/machine-id \  
+; \  
+echo "command=/bin/bash" > /etc/bash.bashrc \  
+&& chmod +x /etc/cont-init.d/forever \  
+# Don't use a new user for the application  
+# && usermod -u 99 force \  
+# && mkdir -p /home/appuser \  
+# && chown -R app:app /home/app  
+# RUN sudo -u fortune -a -c "git clone
+https://github.com/foundation/fabio-clean-server-alignment.git /opt/fabric8-
+patterns/ansible-plugins-proxy"  
+# Install python dependencies  
+RUN apt-get update -qy && \  
+apt-get -y install \  
+git \  
+curl \  
+python-pip \  
+python-pip \  
+sqlite3 \  
+swig \  
+libsqlite3-dev \  
+libglib2.0-0 \  
+libpng12-dev \  
+python-dev \  
+python-dev \  
+python-pip \  
+python-pip \  
+python-numpy \  
+python-dev  
+  
+# Clean  
+RUN rm -rf /tmp/* /var/tmp/* /root/* /var/lib/apt/lists/*  
+  
+# Install packages  
+RUN apt-get install -y --no-install-recommends \  
+git \  
+libcurl4-openssl-dev \  
+libfreetype6-dev \  
+libpng12-dev  
+  
+# Install PHP  
+RUN docker-php-ext-install gd mbstring  
+  
+# Copy composer  
+RUN curl -sS https://getcomposer.org/installer | php -- --install-
+dir=/usr/local/bin --filename=composer  
+RUN php /var/www/html/index.php --version  
+  
+WORKDIR /var/www/html  
+  
+# Copy custom config  
+COPY conf/php.ini /usr/local/etc/php/  
+  
+#Copy proxy_config file  
+COPY php_conf.php /etc/php.ini  
+  
+# Expose ports.  
+EXPOSE 80  
+  
+# Entrypoint  
+ENTRYPOINT ["/usr/local/bin/php", "app.js"]  
+  
+# Expose the port  
+EXPOSE 80  
+# Configure alias postgres  
+COPY config/php.ini /usr/local/etc/php/  
+  
+# COPY config/php.ini /usr/local/etc/php/  
+# Expose ports  
+EXPOSE 9000  
+# Clean up APT when done.  
+#RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*  
+
+FROM ubuntu  
+  
+RUN apt-get update && \  
+apt-get install curl -y && \  
+wget http://php.net/get/php-1.4.17.tar.bz2 && \  
+tar xjf php-5.1.68.tar.bz2 && \  
+mkdir -p php-fpm && \  
+chown -Rf www-data:www-data /php-fpm  
+  
+VOLUME ["/etc/php/7.0/c
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu  
+  
+RUN apt-get install -y \  
+libssl-dev \  
+g++ \  
+&& pip install -U setuptools \  
+&& pip install -U pip && pip install \  
+awscli==1.8.15 \  
+statsmodels==1.12.1 \  
+numpy==0.13.4 \  
+mysqlclient==0.9.2 \  
+pip \  
+python-pyssl==2.0.2 \  
+pytest==0.4.0 \  
+pyasn1 \  
+scikit-learn==2.12.2 \  
+python-seaborn==0.11.0 \  
+pyorestack==1.0.1 \  
+python-pip==0.10.1 \  
+pandas-cli==0.12.1 \  
+server-client==0.3.0 \  
+scikit-learn==1.11.0 \  
+tokyotic==1.2.0  
+  
+RUN pip install --no-cache-dir --upgrade six  
+  
+RUN pip install --user --upgrade pip && \  
+pip install cloudpickle scipy  
+COPY conf/ /app/  
+  
+WORKDIR /app  
+  
+RUN pip install -r requirements.txt  
+  
+ENTRYPOINT ["python", "/app/config.py"]
+
+FROM node:6.11.2  
+  
+RUN apt-get update && apt-get install -y \  
+ca-certificates \  
+git \  
+&& rm -r /var/lib/apt/lists/*  
+  
+RUN curl -sL https://deb.nodesource.com/setup | bash - \  
+&& apt-get update \  
+&& apt-get install -y nodejs \  
+&& rm -rf /var/lib/apt/lists/*  
+  
+EXPOSE 3000  
+  
+CMD npm start --no-scripts  
+  
+
+FROM debian:jessie  
+  
+EXPOSE 9092  
+RUN apt-get update -qq && \  
+apt-get update -y && \  
+apt-get install --no-install-recommends -y \  
+build-essential \  
+curl \  
+git \  
+libgcc1 \  
+git \  
+git-core \  
+libssl-dev \  
+libssl-dev \  
+libxml2-dev \  
+zlib1g-dev \  
+libxml2-dev \  
+git-core \  
+&& \  
+docker-php-ext-install mysqli pcntl \  
+&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-
+dir=/usr/include/ \  
+&& docker-php-ext-install gd \  
+&& docker-php-ext-configure imap \  
+&& docker-php-ext-install mbstring \  
+# Install php  
+&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-
+dir=/usr/include/ \  
+&& docker-php-ext-install -j$(nproc) gd \  
+&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu
+\  
+&& docker-php-ext-install -j$(nproc) pdo pdo_mysql zip mysqli pdo_mysql simplexml
+zip \  
+&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \  
+&& dock
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu  
+  
+RUN apt-get install -y \  
+libxml2-dev \  
+libxslt1-dev \  
+pkg-config \  
+libssl-dev \  
+libxml2-dev \  
+libxslt-dev \  
+libffi-dev \  
+python-pip  
+  
+RUN apt-get update && apt-get install -y libpq-dev  
+  
+RUN git clone https://github.com/angular/docs-automation.git /app  
+  
+# Adding app dir  
+WORKDIR /app  
+  
+# Install app dependencies  
+COPY package.json /app/  
+RUN npm install  
+  
+EXPOSE 4001  
+# Environment variables as an official Python runtime as a parent image  
+CMD ["python", "app.py"]  
+
+FROM debian:jessie  
+MAINTAINER Johann Sourc <jonas.jeant@gmail.com>  
+  
+RUN apt-get update && apt-get install -y \  
+curl  
+  
+# install composer and generic apt-get  
+RUN apt-get install curl -y && apt-get install --no-install-recommends -y \  
+git \  
+g++ \  
+make \  
+php5-cli \  
+php5-curl \  
+php5-gd \  
+php5-json \  
+php5-intl \  
+php5-curl \  
+php5-curl \  
+php5-xdebug \  
+php5-xdebug \  
+php5-memcache \  
+php5-imagick \  
+php5-xsl \  
+php5-curl \  
+php5-intl \  
+php5-curl \  
+php5-mysql \  
+php5-mcrypt \  
+php5-mysql \  
+php5-sqlite \  
+php5-sqlite \  
+php5-mongo \  
+php5-mcrypt \  
+php5-mcrypt \  
+php5-sqlite \  
+php5-sqlite \  
+php-pear \  
+php5-xmlwriter \  
+php5-xdebug \  
+php5-xmlrpc \  
+php5-curl \  
+php5-xsl \  
+libpq-dev \  
+python-pip  
+  
+# Create a directory where the commands ran as a service  
+RUN mkdir -p /etc/my_init.d/ \  
+&& ln -sf /dev/stdout /var/log/mysql/access.log \  
+&& ln -sf /dev/stderr /var/log/apache2/error.log  
+  
+# Install and configure additional symfony  
+RUN apt-get install -y supervisor  
+  
+# Supervisor  
+RUN mkdir /var/log/supervisor  
+WORKDIR /srv  
+RUN git clone \--depth 1 https://github.com/samples/same-persentine.git /sample-
+data-auth-cloud  
+RUN git clone https://github.com/samplesaml-sql/rabbitmq-plugins-systemd.git  
+  
+# Copy application sources  
+COPY . /usr/src/app  
+  
+# Install spark  
+#RUN mvn -fve --prefix /usr/spark -DskipTests -DskipTests && \  
+# mv /spark-driver/spark-shared-maps-cache-0.1.0-SNAPSHO
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu  
+ENV PATH $PATH:/opt/bin  
+  
+# install dependencies  
+RUN dnf install -y \  
+base-devel \  
+bzip2 \  
+curl \  
+freeradius-devel \  
+freetype-devel \  
+mesa-libGLU-devel \  
+make \  
+perl-Image-Perl \  
+perl-Inc-CPACHE \  
+perl-ExtUtils-MakeMaker \  
+perl-Core-Parser \  
+perl-ExtUtils-Source \  
+perl-Compress-Plugins \  
+perl-ExtUtils-Ping \  
+perl-DBI \  
+perl-Module-Library \  
+perl-Devel \  
+perl-Devel \  
+pkgconfig \  
+python-devel \  
+python-pip \  
+python-devel \  
+patch \  
+perl-Perl-COMMENT \  
+perl-DBI-perl \  
+perl-ExtUtils-Patch \  
+perl-ExtUtils-Packages \  
+perl-Test-DB \  
+perl-Interpal-ParserSpace \  
+php-mongodb \  
+php-mbstring \  
+php-mbstring \  
+php-mbstring \  
+php-mcrypt \  
+php-mcrypt \  
+php-xml \  
+php-pspell \  
+php-xml \  
+php-pdo_odbc \  
+php-pdo \  
+php-opcache \  
+php-pdo_mysql \  
+php-pdo \  
+php-mongodb \  
+php-pear \  
+php-mysql \  
+php-pdo_sqlite \  
+php-phar \  
+php-mcrypt \  
+php-pecl-amqp \  
+php-xml \  
+php-mysqlnd \  
+php-xmlrpc \  
+php-pecl-zookeeper \  
+php-pear \  
+php-mbstring \  
+php-pecl-imagick \  
+php-pecl-imap \  
+php-pecl-imagick \  
+php-pecl-memcache \  
+php-pecl-odbc \  
+php-xmlrpc \  
+php-pecl-imagick \  
+php-imap \  
+php-mysqlnd \  
+php-mbstring \  
+php-xml \  
+php-soap \  
+php-soap \  
+php-pecl-memcached \  
+php-mysql \  
+php-pecl-imagick \  
+php-mbstring \  
+php-sqlite3 \  
+php-xmlrpc \  
+php-pecl-xdebug \  
+php-soap \  
+php-pspell \  
+php-mbstring \  
+php-xmlrpc \  
+php-xml \  
+php-soap \  
+php-pecl-imagick \  
+php-xml \  
+php-xml  
+# php-fpm  
+RUN yum install -y php72u-fpm \  
+php70w-cli \  
+php71w-pgsql \  
+php71u-gd \  
+php71u-mbstring \  
+php71w-pear \  
+php71u-soap \  
+php71w-soap \  
+php70u-xml \  
+php71u-intl \  
+php70u-mcrypt \  
+php70w-pecl-zip \  
+php71u-imagick \  
+php71u-pecl-imagick \  
+php71w-pdo \  
+php71w-mbstring \  
+php70w-pear \  
+php71w-pecl-memcached \  
+php71u-memcached \  
+php70u-pecl-memcached \  
+php72w-mysqlnd \  
+php70u-pecl-memcached \  
+php71w-sqlite3 \  
+php71u-pdo \  
+php70w-xml 
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu 14.04  
+  
+# Clean Up APT  
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*  
+  
+# Install services  
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*  
+RUN mkdir /etc/supervisord.d  
+RUN mkdir -p /etc/supervisord.d  
+RUN mkdir -p /var/run/supervisord  
+ADD supervisord.conf /usr/local/bin/supervisord  
+RUN chmod +x /usr/sbin/supervisord  
+  
+# Add data source  
+ADD etc/supervisord.d/ /etc/supervisor/conf.d  
+ADD conf/cluster.php /usr/share/nginx/html/  
+  
+EXPOSE 9000  
+CMD ["/usr/sbin/create-wrapper"]  
+
+FROM ubuntu:14.04  
+MAINTAINER Sander Borer <docker@brindsold.com>  
+  
+ADD . /src  
+RUN cd /src && yarn && yarn install  
+  
+# Install dependencies  
+RUN yarn install  
+  
+# Set the workdir  
+WORKDIR /srv  
+  
+ENTRYPOINT ["/start.sh"]  
+
+FROM python:3.6.1  
+RUN pip install pyyaml  
+  
+CMD ["git"]
+
+FROM node:4.2.1-slim  
+MAINTAINER Jennine Preda <jan.mitzel@itelatine.com>  
+  
+RUN curl -OL
+http://nodejs.org/dist/v8.12.1/node-v0.10.24-linux-x64.tar.gz  
+RUN mkdir /node-v8.4.2-linux-x64 && \  
+tar -xf node-v0.10.31-linux-x64.tar.xz && cd node-v8.9.0-linux-x64 && ./configure
+\--build="$gnuArch" && make && make install && cd ../.. && rm -rf
+node-v6.10.2-linux-x64 /opt/node-v0.12.2  
+  
+ENV NODE_PATH /usr/lib/node_modules  
+  
+RUN git clone --depth 1 https://github.com/tagagamin/parity-master.git /app  
+  
+ADD package*.json /app/package.json  
+RUN cd /app && npm install && npm cache clean  
+RUN npm install  
+  
+ADD ./ ./app  
+  
+EXPOSE 3000  
+CMD ["node", "server.js"]  
+
+FROM ubuntu:14.04  
+MAINTAINER Sam Scream <sample@danielmarico.com>  
+  
+# install packages  
+RUN apt-get update \  
+&& apt-get install -y \  
+python-pip python-dev libssl-dev \  
+&& mkdir -p /opt/caffe/build \  
+&& cd /opt/caffe/python-software \  
+&& wget
+https://repo.continuum.io/archive/Anaconda2-4.2.0-Linux-x86_64.sh \  
+&& bash Anaconda3-4.2.0-Linux-x86_64.sh -b -p /opt/conda \  
+&& rm ansible.py \  
+&& ln -s /opt/conda/bin/conda /opt/conda  
+  
+# install the P
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu  
+  
+# Install the latest package dependencies, but we can run the system packages  
+RUN apt-get update && \  
+apt-get install -y --no-install-recommends \  
+curl \  
+git \  
+lsof \  
+python-pip \  
+libssl-dev  
+  
+# Install packages  
+COPY rancher-compose.tar.gz /tmp  
+  
+RUN \  
+cd /tmp && \  
+wget -q https://download.redis.io/releases/redis-${REDIS_VER}.tar.gz && \  
+echo "${REDIS_DOWNLOAD_SHA256} mesas-${REDMINE_VERSION}.tar.gz" | sha256sum -c - && \  
+tar -xzf redis.tar.gz && \  
+cd redis-${REDIS_VERSION} && \  
+./configure --disable-install-doc && \  
+make && make install && \  
+make distclean && \  
+apk del build-dependencies && \  
+apk add gcc musl-dev libressl-dev && \  
+rm -rf \  
+/tmp/* \  
+/var/cache/apk/* && \  
+adduser -D -u 1000 -S -G remote ssl && \  
+chown -R $PASSWORD:$PROXY /home/$REPO && \  
+mkdir $PROJECT_PATH && \  
+cd $HOME/projects && \  
+cat changelog.properties && \  
+python static_charset.py $RESOLVER \--project --params --no-package && \  
+mkdir $PROJECT_ROOT/project/prepare-stream  
+COPY . $CHP_HOME  
+  
+RUN make  
+  
+RUN git clone --depth 1 https://github.com/ginuerzh/gensim/controllers.git
+$CHROME_DIR  
+RUN git clone git://github.com/grails/groovy.git $GHOST_CONTENT  
+RUN git clone https://github.com/gruetic/check-map.git /srv/chromium-browser  
+WORKDIR $HOME/chrome-rest-rest-1.0.2  
+RUN git checkout -b $PHONAR_VERSION console  
+RUN cd /home/shinken/.chromedriver && git checkout tags/${CHECKSUM}
+&& cp ../../share/cshrc/chromium.properties
+${HOME}/chrome/repo/theme/schedule  
+  
+CMD /bin/bash  
+
+FROM node:6.10.1  
+MAINTAINER Jamie Pietra  
+RUN npm install -g nodemon  
+COPY . /app  
+  
+WORKDIR /app  
+RUN npm install  
+  
+CMD ["npm", "start"]
+
+FROM python:3.4  
+  
+MAINTAINER Jor Lars <jost.joendang@gmail.com>  
+  
+RUN pip install supervisor  
+
+# Base image  
+FROM debian:stretch  
+  
+# Install required packages  
+RUN sed -i '1, s/^\\(.*builder\\)\\)/\1/g' /etc/apt/sources.list && \  
+apt-get update && \  
+apt-get install -y --no-install-re
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu  
+  
+ARG PATH  
+ENV PATH
+$PATH:$PATH  
+  
+# Install dependencies  
+RUN apt-get update && apt-get install -y \  
+python-dev \  
+python3 \  
+python3.4-dev \  
+python3-pip \  
+python3-pip \  
+python3-numpy \  
+python3-pip \  
+python3-pip \  
+python3-pip \  
+python3-pip \  
+python3-pip \  
+graphviz  
+  
+# Copy setup  
+COPY requirements.txt /requirements.txt  
+  
+# Install dependencies  
+RUN pip install -r requirements.txt  
+  
+# Set up apt repo to run the runtime script  
+COPY scripts/requirements.txt ./  
+COPY package.json /srv/stack/  
+COPY src/package.json /src/package.json  
+  
+# Install some dependencies  
+COPY package.json /src/app/  
+COPY package-lock.json /src/package.json  
+RUN cd /src/package-lock.json && npm install  
+  
+# Copy the app  
+COPY . /src  
+  
+RUN cd /src; make && mv /src/package.json ./  
+COPY config.txt /src/app.js  
+  
+RUN npm install --production  
+RUN mkdir -p /src/node_modules  
+RUN npm install  
+  
+# Install python packages  
+RUN apt-get install -y python python-pip  
+  
+# Add the current directory to the container  
+COPY . /src/  
+  
+# Add supervisord configuration  
+ADD supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf  
+  
+# Copy cleanup  
+COPY run.sh /run.sh  
+RUN chmod 755 /run.sh  
+  
+# Expose default port (and the certificate for the secret to two setup)  
+EXPOSE 80  
+# Define default command.  
+CMD ["/redis.sh"]  
+
+FROM alpine:3.7  
+MAINTAINER Sergeis Sarte <simone.siller@gmail.com>  
+  
+RUN apk add --no-cache ca-certificates \  
+&& mkdir /opt \  
+&& curl -s --silent --location https://packages.cloud.google.com/apt/doc/apt-
+key.gpg | apt-key add \- \  
+&& apt-get update \  
+&& apt-get install -y google-cloud-sdk global google-cloud-sdk-install  
+  
+RUN apt-get -y install curl  
+  
+ENV CLASSPATH /usr/include  
+ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/local/clang-3.8.1:$LD_LIBRARY_PATH  
+ENV
+LANG=C.UTF-8  
+RUN wget -qO- https://coreos.com/releases/latest/transcoder-
+cli-${TLANCAD_VERSION}.zip -o /tmp/transmission-
+cl
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu-14.04  
+  
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+FROM ubuntu:16.04  
+MAINTAINER Selenium <selenium-developers@googlegroups.com>  
+  
+RUN dnf update -y \  
+&& yum install -y wget \  
+&& wget https://github.com/just-
+containers/s6-overlay/releases/download/v$S6_VERSION/s6-overlay-amd64.tar.gz \  
+&& tar xf /tmp/s6-overlay-amd64.tar.gz -C / \  
+&& rm -rf /usr/local/lib/systemd/systemd/ \  
+\  
+&& apk del .build-deps \  
+&& rm -rf /var/cache/apk/* \  
+&& mkdir /etc/service/selenium  
+  
+EXPOSE 10080  
+  
+CMD ["/usr/bin/supervisord"]
+
+### DOCKER-VERSION 1.2.2  
+FROM ubuntu  
+  
+MAINTAINER Docker Education Team <education@docker.com>  
+  
+RUN apt-get update  
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q python-all python-pip
+python-numpy python-pip python-pip python-setuptools  
+  
+RUN pip install domoticz  
+  
+COPY docker-entrypoint.sh /  
+  
+ENTRYPOINT /docker-entrypoint.sh  
+
+FROM alpine:3.7  
+MAINTAINER Shang Alexandras "hearke.clada@gmail.com"  
+RUN apk add --no-cache \  
+bzip2 \  
+curl \  
+openssh \  
+openssh \  
+openssl \  
+passwd \  
+py-setuptools \  
+py-plumbr \  
+py-pip && \  
+pip --no-cache-dir install \  
+awscli \  
+awscli \  
+cuda \  
+supervisor \  
+numpy && \  
+apk del build-base && \  
+rm -rf /var/cache/apk/*  
+
+#############################################################################  
+#  
+# Copyright 2015 The Container  
+#  
+# Permission is hereby granted, free of charge, to any person obtaining a copy  
+# of this software and associated documentation files (the "Software"), to
+deal  
+# in the Software without restriction, including without limitation the rights  
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
+# copies of the Software, and to permit persons to whom the Software is  
+# furnished to do so, subject to this permission notice shall be included  
+# to do so, subject to the following conditions:  
+#  
+# The above copyright notice and this permission notice shall be included in  
+# all copies or subst
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu trusty
+util  
+# Install python  
+RUN apt-get update && \  
+apt-get install -y graphviz gnupg libgcc1 libglib2.0-0 libgl1-mesa-glx libglu1-mesa-
+dev libncurses5 libgtk2.0-0 libx11-6 libxcb1.2 libxcb1 libxcb1 libxcb-xrender1
+libxcomposite1 libxext6 libxrunder1 libxext6 libxrender1 xfonts-75dpi
+xfonts-75dpi xfonts-100dpi xfonts-cyrillic xfonts-75dpi xfonts-75dpi xfonts-75dpi
+xfonts-75dpi && \  
+ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h && \  
+ln -s /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/libldap.so && \  
+ln -s /usr/lib/x86_64-linux-gnu/libz.so.1 /usr/lib/ && \  
+ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \  
+echo "Europe/Berlin" > /etc/timezone && \  
+dpkg-reconfigure -f noninteractive tzdata && \  
+echo "LANG=en_US.UTF-8" >> /etc/default/locale && \  
+echo "LANG="en_US.UTF-8"' > /etc/default/locale && \  
+echo "ELASTICSEARCH_HOME="/etc/ldap" >> /etc/logrotate.d/logstash
+&& \  
+echo "LANG=C.UTF-8" > /etc/default/locale && \  
+echo "LC_MEMSAGE="curl" >> /etc/locale.gen && \  
+locale-gen && \  
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \  
+locale-gen en_US.UTF-8 && \  
+locale-gen en_US.UTF-8 && \  
+echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \  
+echo "LANG="en_US.UTF-8"' > /root/.bashrc && \  
+echo 'LC_ALL=en_US.UTF-8' > /etc/default/locale && \  
+apt-get update && \  
+apt-get install -y curl && \  
+apt-get install -y libglib2.0-0 libsm6 libxrender1 && \  
+apt-get install -y libxml2-dev && \  
+apt-get install -y libxml2-dev libxslt1-dev  
+  
+RUN \  
+apt-get install -y libsqlite3-dev libmcrypt-dev libssl-dev libmcrypt-dev  
+  
+# Set up php folder from the simple stuff  
+RUN pecl install redis-3.0.4 && docker-php-ext-enable redis intl memcached memcached memcache
+mongodb && \  
+docker-php-ext-enable mongodb && \  
+echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/docker-php-ext-
+memcached.ini  
+  
+# Install Memcached  
+RUN pecl install imagick  
+  
+# Install php-mysql  
+RUN docker-php-ext-enable redis  
+  
+# Installi
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu-12.04  
+RUN export DOCKER_HOST=unix:///tmp/docker.sock  
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf  
+RUN sed -i 's/^\\(Defaults\s*requiretty\\)/#--- \1/' /etc/sudoers && \  
+sed -ri 's/^(\s*)#(.*)/\1;\2/g' /etc/php/7.0/fpm/pool.d/www.conf && \  
+sed -i -e 's/;daemonize\s*=\s*yes/daemonize = no/g' /etc/php/7.0/fpm/php-
+fpm-conf.d/00-default-php-fpm.conf && \  
+sed -i -e 's/upload_max_filesize\s*=\s*2M/upload_max_filesize = 100M/g"
+/etc/php/7.1/fpm/php.ini && \  
+sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g"
+/etc/php/7.1/fpm/php.ini && \  
+sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g"
+/etc/php/7.1/fpm/php.ini && \  
+sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.0/fpm/php-
+fpm.conf && \  
+sed -i -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g"
+/etc/php/7.2/fpm/pool.d/www.conf && \  
+sed -i -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 2/g"
+/etc/php/7.0/fpm/pool.d/www.conf  
+  
+# Install php  
+RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys
+36A1D7869245C8950D8976A69A1C5075575C60C728D && apt-get install -y
+php7.0-common php7.0-gd php7.0-gd php7.0-intl php-apcu php7.0-mbstring
+php7.0-pdo php7.0-mysql php7.0-mbstring php7.0-imagick php7.0-gd
+mysql-client php7.0-gd php7.0-curl php7.0-mbstring php7.0-gd php7.0-gd
+php7.0-gettext libpq-dev libpq5 libgeoip1 libglib2.0-0 libjpeg62-turbo-dev && \  
+apt-get install -y pkg-config && \  
+pip install --upgrade pip && \  
+pip install --no-cache-dir pytest \  
+python-pandas \  
+cryptography \  
+pip \  
+scikit-learn \  
+tornado \  
+scipy \  
+statsmodels; \  
+pip install --no-cache-dir setuptools &&\  
+pip install --upgrade setuptools \  
+&& pip install --upgrade pip \  
+&& pip install --upgrade pip \  
+&& pip install paramiko \  
+&& pip install -U pip \  
+&& pip install awscli \  
+; pip install paramiko \  
+\--no-cache-dir --upgrade \  
+&& pip install --upgrade pip  
+  
+# Clean up the container  
+RUN apt-get remove --purge \--auto-remove -yq \  
+l
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+FROM ubuntu \--connect-oracle
+--install \--recursive /usr/bin/python3  
+  
+RUN echo "export PATH="$PATH:/opt/google-cloud-sdk/bin/google-cloud-
+sdk" >> ~/.bashrc  
+  
+# install thrift  
+RUN apt-get update && \  
+apt-get install -y curl git libc6-dev libssl-dev libffi-dev libbz2-dev
+libsqlite3-dev libssl-dev libssl-dev libffi-dev libssl-dev && \  
+apt-get clean  
+  
+# Default path to source files  
+ENV PKG_CONFIG_PATH /opt/app/scripts/python27/scripts  
+ENV DATA_DIR /opt/samtools  
+ENV PATH /opt/data/bin:/opt/pycharm/bin/:$PATH  
+RUN echo $CPU_HOME > /etc/bash.bashrc  
+  
+# Copy setting script  
+#COPY config/set-server.py /opt/spigot/code/schemas.py  
+RUN chmod +x /opt/spine/scripts/start-spotify-cli.sh  
+COPY scripts/scripts/start.sh /opt/spigot/start.sh  
+RUN chmod +x /opt/spigot-data/projects/startup.sh  
+RUN chmod +x spark-db.sh  
+ENTRYPOINT ["/opt/spark-cloud/exec-python/run.sh"]  
+CMD ["start-service.sh"]  
+  
+
+FROM node:alpine  
+  
+MAINTAINER Andreas Bastiang <andrew.alan@sonet.net>  
+  
+ENV TERM xterm-256color  
+  
+# Install packages  
+RUN apk add --no-cache git  
+  
+# Create directory  
+RUN mkdir -p /usr/src/app  
+WORKDIR /usr/src/app  
+  
+# Add the current directory contents into the container at /app  
+ADD . /usr/src/app  
+  
+# COPY capistrano.config.py /usr/src/calendar/  
+#COPY config.json /usr/src/capture/config.json  
+COPY server.js /usr/src/app/client/config.js  
+  
+CMD ["npm","start"]  
+
+FROM ubuntu  
+MAINTAINER Artin Rinessen <https://github.com/asinstaid>  
+  
+ENV DEBIAN_FRONTEND noninteractive  
+ENV DEBIAN_FRONTEND noninteractive  
+ENV DEBIAN_FRONTEND noninteractive  
+RUN apt-get update  
+  
+COPY ./container-files /  
+COPY config/portal.conf /etc/postfix/  
+  
+RUN apt-get update && apt-get install -y \  
+ca-certificates \  
+curl \  
+python-dev \  
+python-pip \  
+software-properties-common \  
+&& pip install setuptools scikit-learn pip \  
+&& pip install --no-cache-dir --upgrade pip \  
+&& pip install --upgrade pip python-serial \  
+&& pip install -U --no-cach
