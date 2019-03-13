@@ -1,5 +1,6 @@
 # Dockerfile Generator 
-Generates random Dockerfile using char-rnn
+Generates random Dockerfile using char-rnn.  
+(Yeah, it's useless. Like anyother thing done while procrastinating. All shitty things done in this repo are justified as it saved my time allowing me to actually work) 
 
 ## Usage
 
@@ -11,23 +12,23 @@ Dependencies:
 - jupyter
 - docker/nvidia-docker(optional)
 
-You are requied to clone this repo and download data(if you want to train) or weights(if you just want to checkout).
+You are requied to clone this repo and download the data(if you want to train). Cloning this repo gonna be slow as it has a ~90MB file storing the model's weights.
+
 ```
 git clone https://github.com/sedflix/dockerfile-gen.git
 cd dockerfile-gen
 chmod +x ./get_data.sh
-chmod +x ./get_weights.sh
 ./get_data.sh
 ```
 
 ### Using Docker
 
-Build the image using:
+Build the image using(this is going to be even slower as the base image is not optimisied at all):
 ```
 nvidia-docker build -t dockerfile-gen .
 ```
 
-Run the notebook using:
+Run the notebook on port 8989 using:
 
 ```
 nvidia-docker run -it --ipc=host -v $PWD:/app -p 8989:8989 dockerfile-gen
@@ -37,77 +38,139 @@ nvidia-docker run -it --ipc=host -v $PWD:/app -p 8989:8989 dockerfile-gen
 
 - install pytorch using https://pytorch.org/
 - install jupyter using your preferred method
-- start notebook using your preferred method
+- start jupyter and open `dockerfile-generator.ipynb` using your preferred method
 
-## Examples
+ ## Examples
 
-You can find more example in [EXAMPLES.txt](https://github.com/sedflix/dockerfile-gen/blob/master/EXAMPLES.txt). Or you can try it on your own using `rnn_best.net` provided in the repo. A few selected samples are given below:
+You can find more example in [EXAMPLES_E5.txt](https://github.com/sedflix/dockerfile-gen/blob/master/EXAMPLES_E5.txt). Or you can try it on your own using `rnn_best.net` provided in the repo. A few selected samples are given below:
 
-**Note**: These are examples are from the end of 1st epoch. So they are pretty shit.
+**Note**: These are examples are from the end of 5th epoch. So they are not as great at all.
 
-#### 1
+#### Sample 1
 ```
-FROM ubuntu:14.04  
-MAINTAINER Daniel Pontang <mritden@ansible.com>  
+FROM dockerfile/nodejs  
   
-RUN apt-get update && apt-get install -y python-pip \  
-&& curl -fSL "https://github.com/docker/bin/linux/amd64/elasticsearch-$SPARK_VERSION.tar.gz" | tar -xz \  
-&& cd /tmp/gradle-latest.zip  
+MAINTAINER Matthew Bullstanger <matt.moner@gmail.com>  
   
-RUN apt-get install -qqy \--no-install-recommends \  
-binare \  
-git \  
-curl  
-  
-WORKDIR /opt  
-CMD [ "/opt/steamcmd/spark-command.sh"]  
-```
-
-#### 2
-```
-FROM debian:jessie-slim  
-  
-RUN apt -y update
-&& apt upgrade -y  
-  
-RUN apt clean  
-  
-RUN cd /tmp && \  
-apt-get install --force-yes python-pip && \  
-apt-get install -y \  
+# Install python 3  
+RUN apt-get update \  
+&& apt-get install -y \  
+graphviz \  
 libssl-dev \  
 libssl-dev \  
-postgresql-client \  
+libxml2-dev \  
+libxslt-dev \  
+libffi-dev \  
+libssl-dev \  
+libcurl4-openssl-dev \  
+libpq-dev \  
+libxml2-dev \  
+libxslt1-dev \  
+python-pip \  
 python-dev \  
-cpp \  
-python-dev \  
-&& python3 -m usermod -g 1000 nginx \  
-&& mkdir -p .bootstrap \  
-&& rm /etc/nginx/modules \  
-&& sed -i "s/^;date.timezone =\/set docker -e "debconf-
-setess
-/usr/sbin/apt-apt-server/remote.py \  
-&& sed -i 's/;cat \/usr\/local/g' /etc/php.sock; \  
-echo "package info store android apt-get --allow-unauthenticated compatible-daemonize.so\n" >>
-/var/log/nginx/access.log \  
-&& echo "php-fpm catalogued-plugin:/static/debconf  
+python-numpy \  
+python-pip  
+  
+# Install python packages  
+RUN apt-get update && apt-get install -y --no-install-recommends \  
+ca-certificates \  
+curl \  
+&& apt-get clean  
+  
+RUN git clone \--depth 1 https://github.com/creationix/nvm.git
+/usr/local/nvm \  
+&& cd /usr/local/nvm \  
+&& git checkout $VERSION \  
+&& ./configure && make install \  
+&& cd .. && rm -fr video_$VERSION_VERSION \  
+&& ln -s ../../varnish-$VERSION varnish && ln -s varnish-$VERSION /var/log  
+# Add and install php  
+# RUN curl -sS https://getcomposer.org/installer | php -- --install-
+dir=/usr/local/bin --filename=composer  
+# RUN pip install --upgrade pip  
+#RUN pip install setuptools  
+# RUN pip install --no-cache-dir -U pip setuptools  
+# RUN conda install -c conda-forge conda  
+RUN conda install --yes conda  
+RUN conda clean --tarballs  
+  
+# Copy our configuration file  
+COPY root/. /  
+  
+# Define default command.  
+CMD ["bash"]  
 ```
 
-#### 3
+#### Sample 2
 ```
 FROM ubuntu  
-# Create directories  
-RUN chown -R www-data:www-data /var/log/package  
-RUN mkdir -p /etc/systemd/system/sockets  
-RUN mkdir /var/www/app  
+RUN sudo add-apt-repository -y ppa:openjdk-r/ppa \  
+&& apt-get update \  
+&& apt-get install -qqy \  
+openjdk-8-jdk \  
+&& apt-get autoremove -y \  
+&& apt-get clean -yqq \  
+&& apt-get autoclean -y \  
+&& apt-get autoclean \  
+&& apt-get autoremove -y \  
+&& rm -rf /var/lib/apt/lists/*  
   
-ENV PATH "$PATH:/home/start/plugins/container-schemascraft-docker.sh  
+# Add the locale archive to install and extract openshift/bin  
+RUN add-apt-repository ppa:geoserver/perforce && \  
+apt-get -y update && \  
+apt-get -yq install postgresql-client && \  
+rm -rf /var/lib/apt/lists/* && \  
+rm -rf /usr/share/man/?? && \  
+rm -rf /usr/share/man/??_*  
+# Download packages  
+RUN mkdir /packer-env && \  
+cd /packer-deploy && \  
+git clone https://github.com/dependencies/pop-docs/get-pip.py && \  
+git clone https://github.com/pyopensource/postgres.git && \  
+cd popper && \  
+git checkout $GOPATH/src/github.com/docker/postgres/build/postgresql.sh  
   
-ADD conf /usr/src/app/  
+EXPOSE 9443  
+ENTRYPOINT ["/docker-entrypoint.sh"]  
+CMD ["postgres"]  
+```
+
+#### Sample 3
+```
+FROM phusion/baseimage:0.9.16  
+MAINTAINER Docker Education Team <education@docker.com>  
   
-# Install the code  
-RUN mkdir -p /var/lib/mysql /var/log/nginx  
-COPY package.json ./  
-COPY . /root/  
-CMD ["bash", "broker.sh"]  
+# Enable ENV variables  
+ENV DEBIAN_FRONTEND noninteractive  
+  
+RUN apt-get update -y -qq && apt-get update && apt-get install -y wget  
+  
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -  
+RUN apt-get install -y nodejs  
+  
+# Copy application.  
+COPY . /app  
+  
+# Copy the current directory contents into the container at /app  
+ADD . /app  
+  
+# Install app dependencies  
+RUN npm install --production  
+  
+# Copy the current directory contents into the container at /app  
+ADD . /app  
+  
+# Install app dependencies  
+COPY package.json /app/package.json  
+  
+# Install app dependencies  
+RUN npm install  
+  
+# Bundle app source  
+COPY . /app  
+  
+EXPOSE 80  
+EXPOSE 8080  
+ENV PORT 80  
+CMD npm start   
 ```
