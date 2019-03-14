@@ -40,7 +40,23 @@ nvidia-docker run -it --ipc=host -v $PWD:/app -p 8989:8989 dockerfile-gen
 - install jupyter using your preferred method
 - start jupyter and open `dockerfile-generator.ipynb` using your preferred method
 
- ## Examples
+## Datasets
+
+I've used the Dinosaur Datasets. It can be seen here: https://vsoch.github.io/datasets/2018/dockerfiles/
+
+```
+@misc{vanessa_sochat_2018_1287013,
+  author       = {Vanessa Sochat},
+  title        = {{vsoch/dockerfiles: Scientific Dockerfiles, Version 
+                   1.0.0}},
+  month        = jun,
+  year         = 2018,
+  doi          = {10.5281/zenodo.1287013},
+  url          = {https://doi.org/10.5281/zenodo.1287013}
+}
+```
+
+## Examples
 
 You can find more example in [EXAMPLES_E5.txt](https://github.com/sedflix/dockerfile-gen/blob/master/EXAMPLES_E5.txt). Or you can try it on your own using `rnn_best.net` provided in the repo. A few selected samples are given below:
 
